@@ -30,6 +30,8 @@ npx @vimoxshah/skills
 curl -fsSL https://raw.githubusercontent.com/vimoxshah/skills/main/install.sh | bash
 ```
 
+<img src=".github/assets/demo.gif" alt="Running npx @vimoxshah/skills links each skill into Claude Code, Codex and Cursor from one central clone" width="100%">
+
 Claude Code users can also install it as a plugin:
 
 ```

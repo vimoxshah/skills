@@ -22,3 +22,21 @@ Check the render at thumbnail size before shipping it — a social card is read 
 600 px wide, not at full size.
 
 Update the counts in the card whenever the skill or agent count changes.
+
+# Demo
+
+`demo.gif` shows one install wiring the same skills into Claude Code, Codex and Cursor.
+1420x600, 280 KB.
+
+## Regenerating
+
+`demo.tape` is the source, for [vhs](https://github.com/charmbracelet/vhs) (`brew install vhs`).
+It runs against a throwaway `$HOME` and never touches your real config; the clone is warmed in a
+hidden phase so the visible run shows only the linking.
+
+```bash
+cd .github/assets && vhs demo.tape
+```
+
+Re-record it whenever the installer's output changes, and check the last frame before shipping —
+long skill names wrap if `Set Width` is too small.
