@@ -1,5 +1,7 @@
 # skills
 
+<img src=".github/assets/social-preview.png" alt="One install, every harness — 10 skills and 18 agents linked from one clone into Claude Code, Codex, Cursor, OpenCode and more" width="100%">
+
 **Skills and agents for AI coding assistants — Claude Code, Codex, Cursor, OpenCode, Copilot, Gemini CLI and more. One install, every harness.**
 
 [![npm](https://img.shields.io/npm/v/@vimoxshah/skills?color=cb3837&logo=npm)](https://www.npmjs.com/package/@vimoxshah/skills)
