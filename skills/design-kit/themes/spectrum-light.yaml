@@ -1,0 +1,113 @@
+# AUTHORED 2026-08. A generic "color is meaning" light launch theme. First
+# used for the Agentd launch family; the visual language is documented in
+# Transcribed from a film art-direction reference.
+meta:
+  name: spectrum-light
+  label: Spectrum Light
+  default: false
+  contexts: [internal, launch, workshop, platform]
+  modes: [light]
+  mood: launch / color-is-meaning / bright
+  source: authored (first shipped with the Agentd launch family)
+  best_for: >
+    Product launches, workshops, and collateral where color carries meaning:
+    near-white canvas, ink type, six saturated category lanes plus one
+    RESERVED highlight hue, with dark surfaces kept only for terminals and
+    divider moments. A deliberate departure from the house look — pick it when
+    a deck must read as part of a colorful launch identity.
+
+colors:
+  ground:    {light: "#FAFAF7"}
+  raise:     {light: "#FFFFFF"}
+  sunk:      {light: "#F1EFE9"}
+  ink:       {light: "#16181D"}
+  ink-soft:  {light: "#5C6470"}
+  ink-faint: {light: "#8A8F98"}
+  rule:      {light: "#E6E4DE"}
+  rule-soft: {light: "#F0EEE8"}
+  accent:    {light: "#0E7490"}
+  accent-bg: {light: "rgba(14,116,144,.09)"}
+
+# TEXT-grade variants of the lane hues (the full-saturation lanes live in
+# `charts` and in graphic elements; text needs the darkened versions).
+emphasis:
+  petrol: "#0E7490"    # structure — the thing under discussion
+  amber: "#B45309"     # change / attention (drift lane at text grade)
+  teal: "#0F766E"      # verified / safe (observability lane at text grade)
+  slate: "#475569"     # RESERVED: one special/"yours" moment per deck
+
+semantic:
+  ok: "#0F766E"
+  warn: "#B45309"
+  alert: "#BE123C"
+
+fonts:
+  default: outfit-inter
+  compatible: [outfit-inter, house-plex, archivo-tight, system-stack]
+  incompatible:
+    anton-archivo: "poster caps fight the theme's geometric lockup voice"
+    archivo-black-mono: "manifesto weight is louder than the launch identity"
+    fraunces-archivo: "this identity's display face is a geometric grotesque, not a serif"
+    newsreader-archivo: "reading serif belongs to prose, not a launch console"
+    space-ibm: "Space Grotesk is terminal-neon's voice — keep the two identities distinct"
+
+rationing:
+  max_emphasis_per_slide: 2
+  hero_hue: petrol
+  rule: >
+    Color is meaning, not decoration. The six full-saturation lane hues
+    (amber/coral/teal/azure/violet/lime) belong to GRAPHIC elements — rails,
+    dots, chips — and each hue should own ONE category/meaning for the whole
+    deck. TEXT emphasis uses the darkened text-grade variants: petrol for the
+    thing under discussion, amber for change/attention, teal for verified.
+    Slate is reserved for a single special moment per deck. The ground stays
+    near-white; hierarchy comes from lightness, never from saturating the
+    canvas.
+
+charts:
+  categorical: ["#D97706", "#E11D48", "#0D9488", "#0284C7", "#0E7490", "#4D7C0F"]
+  sequential:  ["#EDF6F9", "#CBE5EC", "#A3D2DE", "#6FB6C9", "#3D93AB", "#0E7490"]
+  diverging:   ["#BE123C", "#F5A8B8", "#F1EFE9", "#99E3DA", "#0F766E"]
+  good: "#0F766E"
+  bad: "#BE123C"
+
+# Authored deck tokens — SINGLE-WORLD LIGHT: moment/divider slides stay on the
+# light canvas (cream tint + soft petrol/amber radials), so the whole deck
+# reads as one theme. The ONLY dark surface is the terminal panel (#101318).
+# KNOWN GATE FINDING (accepted by the deck owner 2026-08-16): moment-vs-content
+# contrast is deliberately ~1.1:1 — a single-world-light decision. Decks using
+# this theme MUST compensate with a structural divider device (e.g. a full-width
+# spectrum band + oversized display type) so sections still read as breaks.
+deck_tokens:
+  --bg: "#FAFAF7"
+  --bg-soft: "#F1EFE9"
+  --bg-tint: "#ECEAE2"
+  --card: "#FFFFFF"
+  --ink: "#16181D"
+  --ink-dim: "#5C6470"
+  --ink-mute: "#8A8F98"
+  --border: "#E6E4DE"
+  --border-soft: "#F0EEE8"
+  --accent: "#0E7490"
+  --accent-deep: "#155E75"
+  --accent-soft: "rgba(14,116,144,.09)"
+  --accent-line: "rgba(14,116,144,.30)"
+  --accent2: "#B45309"
+  --accent2-soft: "rgba(180,83,9,.12)"
+  --accent2-line: "rgba(180,83,9,.36)"
+  --accent3: "#0F766E"
+  --accent3-soft: "rgba(15,118,110,.10)"
+  --accent3-line: "rgba(15,118,110,.38)"
+  --shadow: "0 22px 60px rgba(22,24,29,.12)"
+  --shadow-sm: "0 8px 24px rgba(22,24,29,.09)"
+  --moment-bg: "radial-gradient(1200px 700px at 88% -14%,rgba(14,116,144,.12),transparent 55%),radial-gradient(900px 560px at 2% 118%,rgba(245,158,11,.10),transparent 58%),linear-gradient(160deg,#F4F1E9 0%,#ECE8DD 100%)"
+  --moment-ink: "#16181D"
+  --moment-dim: "#5C6470"
+  --moment-mute: "#8A8F98"
+  --moment-accent: "#0E7490"
+  --moment-card: "#FFFFFF"
+  --moment-border: "#E6E4DE"
+  --term-bg: "#101318"
+  --term-head: "#171B22"
+  --term-ink: "#D7DCE4"
+  --term-dim: "#8B93A3"

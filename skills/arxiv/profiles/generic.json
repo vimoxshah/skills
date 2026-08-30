@@ -1,0 +1,37 @@
+{
+  "name": "generic",
+  "description": "Default relevance axes for an AI-assisted software ecosystem. Copy this to <repo>/$SKILLS/arxiv/profiles/<name>.json and replace `boost` with YOUR shipped mechanisms \u2014 that is what turns a topical scan into a decision.",
+  "axes": {
+    "memory": "memory|long-term memory|episodic|persistent state",
+    "context": "\\bcontext\\b|long-context|context window|context length",
+    "tool_use": "tool[- ]?(call|use|select|plan|invocation|parameter)",
+    "mcp": "\\bMCP\\b|model context protocol|tool schema",
+    "orchestration": "orchestrat|multi-?agent|delegat|fan-?out|subagent",
+    "verification": "verif|adversarial|refut|certificat",
+    "eval": "benchmark|\\beval|leaderboard|golden|fixture",
+    "skills": "\\bskill|self-evol|self-improv|continual",
+    "codegen": "code generation|program synth|code gen",
+    "swe": "\\bSWE\\b|software engineer|repositor|pull request|issue resolution",
+    "knowledge": "knowledge base|knowledge graph|ontolog|retriev|RAG\\b",
+    "observability": "telemetr|observab|\\btrace|audit|provenance",
+    "trajectory": "trajector|rollout|episode",
+    "guidance": "guidance|prompt|instruction|scaffold",
+    "agentic": "agentic|LLM agent|coding agent|autonomous agent",
+    "workflow": "workflow|pipeline|decompos",
+    "horizon": "long-horizon|long-running|sequential decision",
+    "production": "enterprise|production|deploy|cost"
+  },
+  "boost": {
+    "majority_vote": "self-consistency|majority vote|plurality|best-of-[kn]",
+    "judge_panel": "LLM.as.a.judge|judge model|committee|reviewer agent",
+    "memory_ops": "memory (update|operation|pollution|corrupt)",
+    "read_discipline": "truncat|distractor|context (compress|retention)|lost in the middle",
+    "failure_predict": "early (stop|termination|failure)|restart|loop detect",
+    "tool_params": "parameter (fill|generat|correct)|tool parameter",
+    "experience_reuse": "experience (pool|reuse|distill|driven)|adaptive guidance",
+    "skill_library": "skill (librar|collection|accumulat)|continual skill",
+    "structured_output": "schema (valid|enforce|constrain)|structural (success|validity)",
+    "cost_control": "token (budget|saving)|execution token|cost premium"
+  },
+  "boost_note": "A boost must name a MECHANISM YOU SHIP, not a topic. If one fires on >6% of a corpus it is a topic \u2014 tighten it. Measured on a 200-paper cs.AI batch: topical patterns fired on 16-17/200 and buried the signal; mechanism patterns fired on 1-5 and caught every high-value paper."
+}

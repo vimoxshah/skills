@@ -1,0 +1,62 @@
+# Festival — the default deck theme (chosen 2026-08-11)
+meta:
+  name: festival
+  label: Festival
+  default: false
+  contexts: [internal, platform, launch, all-hands]
+  modes: [dark]                 # single-world theme, committed on purpose
+  mood: loud / high-energy / celebratory
+  source: hyperframes-creative/palettes/bold-energetic (row 1)
+  best_for: >
+    Launches, all-hands, announcement decks, sprint demos — anything where the
+    room should feel the energy before they read the words.
+
+colors:
+  ground:    {dark: "#0E0B16"}
+  raise:     {dark: "#1C1528"}
+  sunk:      {dark: "#070510"}
+  ink:       {dark: "#FFFDF7"}
+  ink-soft:  {dark: "rgba(255,253,247,.72)"}
+  ink-faint: {dark: "rgba(255,253,247,.46)"}
+  rule:      {dark: "#2E2440"}
+  rule-soft: {dark: "#221A33"}
+  accent:    {dark: "#FFBE0B"}
+  accent-bg: {dark: "rgba(255,190,11,.13)"}
+
+# the c-* emphasis span set
+emphasis:
+  gold:    "#FFBE0B"
+  flame:   "#FB5607"
+  magenta: "#FF006E"
+  violet:  "#8338EC"
+  azure:   "#3A86FF"
+
+# semantic ≠ accent — meaning, not decoration
+semantic:
+  ok:    "#06D6A0"
+  warn:  "#FFBE0B"
+  alert: "#FF006E"
+
+fonts:
+  default: anton-archivo
+  compatible: [anton-archivo, archivo-black-mono, archivo-tight, space-ibm, system-stack]
+  incompatible:
+    fraunces-archivo: "high-contrast serif display fights five saturated hues — the palette wins, the type looks accidental"
+    newsreader-archivo: "reading serif reads quiet and warm against near-black + neon; tonal mismatch"
+
+# theme-specific discipline. Festival is the loudest theme in the registry;
+# without rationing every slide shouts and nothing reads as the point.
+rationing:
+  max_emphasis_per_slide: 2
+  hero_hue: gold
+  rule: >
+    One hue owns the slide's hero moment; at most one more may support it. The
+    full five-hue set is a THEME-level palette, never a SLIDE-level palette.
+    A stat strip may cycle hues across slides — not within one.
+
+charts:
+  categorical: ["#FFBE0B", "#3A86FF", "#FF006E", "#06D6A0", "#8338EC", "#FB5607"]
+  sequential:  ["#2A1B3D", "#5A2E6E", "#8F3B85", "#C24E7D", "#F0706A", "#FFBE0B"]
+  diverging:   ["#3A86FF", "#7FA8D8", "#C9CBD1", "#FFA85C", "#FB5607"]
+  good: "#06D6A0"
+  bad:  "#FF006E"

@@ -1,0 +1,102 @@
+/*
+ * deck-motion.css — motion tokens + curated primitives (opt-in, additive).
+ *
+ * House convention this file follows (same as the template's own .reveal /
+ * .pop / .kicker-line rules in deck.html):
+ *   1. The UNGATED base rule is always the visible end-state — print,
+ *      no-JS, and reduced-motion all fall back to it automatically.
+ *   2. The motion is added only inside
+ *      `@media (prefers-reduced-motion:no-preference){ html:not(.motion-off) [data-deck-active] ... }`
+ *   3. One-shot "this fires when the slide becomes active" effects use
+ *      @keyframes/animation (matches .reveal/.pop/.kicker-line — a plain
+ *      `transition` does not reliably animate when the gating selector
+ *      itself only just started matching). JS-driven state toggles that
+ *      happen *while* the slide is already active (fragment stepping) use
+ *      `transition` instead, matching deck-anim.js's own revealTerminal.
+ */
+
+:root {
+  --mo-fast: 180ms;
+  --mo-base: 320ms;
+  --mo-slow: 700ms;
+  --mo-ease: cubic-bezier(.2, .7, .3, 1);
+  --mo-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --mo-stagger: 85ms;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 1. Fragment reveal — pairs with deck-fragments.js's [data-frag-pending] */
+/* ---------------------------------------------------------------------- */
+
+[data-frag] { opacity: 1; }
+/* Unconditional (not motion-gated): correctness must hold even with motion
+   off or deck-fragments.js's own fallback stylesheet absent — a pending
+   fragment must never be visible. */
+[data-frag][data-frag-pending] { opacity: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.motion-off) [data-deck-active] [data-frag] {
+    transition: opacity var(--mo-base) var(--mo-ease), transform var(--mo-base) var(--mo-ease);
+  }
+  html:not(.motion-off) [data-deck-active] [data-frag][data-frag-pending] {
+    transform: translateY(10px);
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* 2. SVG draw-in — data-anim="draw" on the <section> (like terminal/query) */
+/* Author contract: normalize each path with pathLength="1" so dash values */
+/* are plain 0..1, e.g. <path pathLength="1" d="..."/>                    */
+/* Stagger multiple paths with style="--d:0.3" (seconds).                 */
+/* ---------------------------------------------------------------------- */
+
+[data-anim="draw"] svg path[pathLength] { stroke-dashoffset: 0; } /* base = fully drawn */
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.motion-off) [data-deck-active][data-anim="draw"] svg path[pathLength] {
+    stroke-dasharray: 1;
+    animation: deck-draw var(--mo-slow) var(--mo-ease-out) both;
+    animation-delay: calc(var(--d, 0) * 1s);
+  }
+}
+
+@keyframes deck-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* 3. Comparison split — the s-pattern before/after archetype.            */
+/* Structural (grammar.md's `.s-pattern` two-column archetype: first child */
+/* `.left` + its sibling) and, for decks that use the documented          */
+/* `.pattern-box` labels directly, a class-based variant. Nothing to hide */
+/* by default here — plain divs are already visible without JS/motion —  */
+/* so there is no ungated base rule to add, only the entrance animation.  */
+/* ---------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.motion-off) [data-deck-active].s-pattern > .left {
+    animation: deck-split-left var(--mo-base) var(--mo-ease-out) both;
+  }
+  html:not(.motion-off) [data-deck-active].s-pattern > .left + * {
+    animation: deck-split-right var(--mo-base) var(--mo-ease-out) both;
+    animation-delay: var(--mo-base);
+  }
+  html:not(.motion-off) [data-deck-active] .pattern-box.before {
+    animation: deck-split-left var(--mo-base) var(--mo-ease-out) both;
+  }
+  html:not(.motion-off) [data-deck-active] .pattern-box.after {
+    animation: deck-split-right var(--mo-base) var(--mo-ease-out) both;
+    animation-delay: var(--mo-base);
+  }
+}
+
+@keyframes deck-split-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes deck-split-right {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: none; }
+}

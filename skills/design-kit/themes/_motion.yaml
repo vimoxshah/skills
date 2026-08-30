@@ -1,0 +1,45 @@
+# Shared motion tokens — every theme inherits these unless it overrides.
+# These are THE cross-surface motion values: a deck reveal and an artifact
+# reveal use the same durations and curves, which is what makes two different
+# surfaces feel like one system.
+#
+# Consumed by: house-decks/template/deck-motion.css, html-artifact motion
+# patterns, and hyperframes frame.md (converted to frames at the project fps).
+
+version: 1
+
+durations:
+  fast: 180ms      # state change the eye should not have to wait for (hover, toggle)
+  base: 320ms      # the default — reveals, fragment steps, panel entrances
+  slow: 700ms      # a deliberate beat: a hero line, a diagram drawing itself
+
+easings:
+  # decelerate-heavy: fast out of the gate, settles softly. The house curve.
+  ease:     "cubic-bezier(.2,.7,.3,1)"
+  # stronger deceleration for entrances that must feel "placed"
+  ease-out: "cubic-bezier(.16,1,.3,1)"
+
+stagger:
+  step: 85ms       # per-item delay in a staggered group (the --i multiplier)
+  max_items: 7     # beyond ~7 the tail feels broken, not choreographed
+
+# Doctrine that travels with the tokens (see pr-to-video's motion language):
+doctrine:
+  never_front_load: >
+    Do not fire an entire slide's stagger on entry and then freeze. Reveal is
+    paced to the SPEAKER on a deck (fragment stepping) and to the VOICEOVER in
+    a video. The failure mode is front-loaded-then-frozen, never "too still".
+  motion_must_encode: >
+    Every animation must carry information — sequence, causality, comparison,
+    or magnitude. Motion that only decorates is slop; delete it.
+  held_read: >
+    Once content has resolved, it holds and reads. Prefer stillness to bad
+    motion: no drift, no idle breathing, no back-half pan.
+  reduced_motion: >
+    Every primitive must degrade to an instant, complete state under
+    prefers-reduced-motion — never to a broken half-state.
+
+frames_note: >
+  At 30fps: fast≈5f, base≈10f, slow≈21f. At 60fps: 11f / 19f / 42f. Round to
+  whole frames when compiling to a video surface; a fractional frame is a
+  dropped frame.

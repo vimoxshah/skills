@@ -1,0 +1,59 @@
+name: lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: lint the repo
+        run: node scripts/lint.mjs
+
+      - name: check install.sh syntax
+        run: bash -n install.sh
+
+      - name: smoke test the installer
+        run: |
+          set -euxo pipefail
+          export HOME="$(mktemp -d)"
+          mkdir -p "$HOME/.claude" "$HOME/.codex" "$HOME/.cursor" "$HOME/.config/opencode" "$HOME/.copilot"
+
+          node bin/install.mjs --yes --all --dir "$PWD" --harness claude,codex,cursor,opencode,copilot
+
+          find "$HOME" -maxdepth 4 | sort
+
+          node bin/install.mjs doctor --dir "$PWD"
+
+          node bin/install.mjs uninstall --yes --dir "$PWD"
+
+          # Nothing of ours may survive: every install root has to come back empty.
+          for dir in .claude/skills .claude/agents .claude/commands .claude/output-styles \
+                     .cursor/skills .cursor/agents .codex/agents \
+                     .config/opencode/skills .config/opencode/agent \
+                     .copilot/skills .agents/skills; do
+            if [ -d "$HOME/$dir" ] && [ -n "$(ls -A "$HOME/$dir")" ]; then
+              echo "leftover files in $dir:"
+              ls -la "$HOME/$dir"
+              exit 1
+            fi
+          done
+          for file in .claude/CLAUDE-ROUTING.md .claude/CLAUDE-CODEX-ROUTING.md; do
+            if [ -e "$HOME/$file" ]; then
+              echo "leftover file: $file"
+              exit 1
+            fi
+          done
+          if [ -n "$(find "$HOME" -type l -print -quit)" ]; then
+            echo "leftover symlinks:"
+            find "$HOME" -type l -ls
+            exit 1
+          fi
+          echo "fake home is clean"

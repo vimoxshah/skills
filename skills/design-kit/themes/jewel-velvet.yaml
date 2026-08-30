@@ -1,0 +1,57 @@
+meta:
+  name: jewel-velvet
+  label: Jewel Velvet
+  default: false
+  contexts: [internal, exec, vision, keynote]
+  modes: [dark]
+  mood: premium / velvet / considered
+  source: hyperframes-creative/palettes/jewel-rich (row 3 + gold)
+  best_for: >
+    Exec and vision decks, roadmap keynotes, board-adjacent audiences. The
+    purple lineage of house-purple, but rich rather than corporate.
+
+colors:
+  ground:    {dark: "#10002B"}
+  raise:     {dark: "#240046"}
+  sunk:      {dark: "#0A0019"}
+  ink:       {dark: "#F3EBFF"}
+  ink-soft:  {dark: "rgba(243,235,255,.72)"}
+  ink-faint: {dark: "rgba(243,235,255,.46)"}
+  rule:      {dark: "#3C096C"}
+  rule-soft: {dark: "#2C0552"}
+  accent:    {dark: "#F7B538"}
+  accent-bg: {dark: "rgba(247,181,56,.12)"}
+
+emphasis:
+  gold:   "#F7B538"
+  orchid: "#BE95C4"
+  violet: "#7B2CBF"
+  rose:   "#E56B6F"
+
+semantic:
+  ok:    "#7CC9A3"
+  warn:  "#F7B538"
+  alert: "#E56B6F"
+
+fonts:
+  default: fraunces-archivo
+  compatible: [fraunces-archivo, newsreader-archivo, archivo-tight, system-stack]
+  incompatible:
+    anton-archivo: "condensed poster caps read cheap against a premium velvet ground"
+    archivo-black-mono: "maximum-weight display fights the restraint the palette is buying"
+    space-ibm: "console voice contradicts a boardroom register"
+
+rationing:
+  max_emphasis_per_slide: 2
+  hero_hue: gold
+  rule: >
+    Gold is reserved for the ONE number or phrase that matters on the slide.
+    Orchid carries secondary emphasis. Gold on every line spends the theme's
+    entire effect on the first slide.
+
+charts:
+  categorical: ["#F7B538", "#BE95C4", "#863DC4", "#E56B6F", "#4EA8A0", "#645B93"]
+  sequential:  ["#10002B", "#2C0552", "#4A1275", "#6B2A95", "#9F6BB8", "#F7B538"]
+  diverging:   ["#7B2CBF", "#A98BC9", "#D9D3DE", "#EFA98C", "#E56B6F"]
+  good: "#7CC9A3"
+  bad:  "#E56B6F"

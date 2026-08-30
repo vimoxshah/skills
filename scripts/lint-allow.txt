@@ -1,0 +1,13 @@
+# Allowlist for the forbidden-string scan in scripts/lint.mjs.
+#
+# One rule per line:   <repo relative path>:<substring>
+#
+# A hit is pardoned when the path matches exactly, the offending line contains
+# the substring, and the substring contains the forbidden term. So the rule has
+# to name the real phrase, not just the bare word - that keeps the escape hatch
+# narrow and reviewable.
+#
+# Example:
+#   docs/history.md:the gdk plugin it grew out of
+#
+# scripts/lint.mjs and this file are never scanned: they hold the terms by design.

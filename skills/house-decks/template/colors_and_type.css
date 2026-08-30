@@ -1,0 +1,210 @@
+/* =======================================================================
+   Colors & Type foundations
+   Source: /theme/tokens.ts + Figma variables + Logo.svg
+   ======================================================================= */
+
+:root {
+  /* ── Brand -------------------------------------------------------- */
+  --brand-blue:        #009CDE;   /* mark blue (login CTA, brand) */
+  --brand-blue-hover:  #0089c4;
+  --brand-navy:        #003865;   /* wordmark navy */
+  --brand-navy-deep:   #020b17;   /* base ink */
+
+  /* ── Primary (Ant) ------------------------------------------------ */
+  --primary:           #2271ea;
+  --primary-hover:     #1a5dc7;
+  --primary-active:    #1557b0;
+  --primary-text:      #1557b0;
+  --primary-bg:        #f0f6fe;
+  --primary-bg-hover:  #e0edfd;
+  --link:              #2271ea;
+  --link-active:       #0958d9;
+
+  /* ── Status ------------------------------------------------------- */
+  --success:           #57b867;
+  --success-text:      #3a9148;
+  --success-bg:        #e8f5eb;
+  --warning:           #f3c33f;
+  --warning-text:      #b88a0d;
+  --warning-bg:        #fefaec;
+  --error:             #d44c46;
+  --error-active:      #b8342d;
+  --error-bg:          #fdeded;
+
+  /* ── Surfaces ----------------------------------------------------- */
+  --bg-layout:         #f5f6fa;
+  --bg-container:      #ffffff;
+  --bg-spotlight:      #fafbfc;
+  --bg-elevated:       #ffffff;
+
+  /* ── Text --------------------------------------------------------- */
+  --fg-heading:        rgba(2, 11, 23, 0.88);
+  --fg-body:           rgba(2, 11, 23, 0.88);
+  --fg-description:    rgba(2, 11, 23, 0.45);
+  --fg-secondary:      rgba(2, 11, 23, 0.45);
+  --fg-disabled:       rgba(2, 11, 23, 0.25);
+  --fg-placeholder:    rgba(2, 11, 23, 0.25);
+  --fg-on-dark:        #ffffff;
+
+  /* ── Borders ------------------------------------------------------ */
+  --border:            #e0e0e0;
+  --border-split:      #f0f0f0;
+  --border-secondary:  #f0f0f0;
+
+  /* ── Icon --------------------------------------------------------- */
+  --icon:              rgba(0, 0, 0, 0.45);
+  --icon-hover:        rgba(0, 0, 0, 0.88);
+
+  /* ── Gray scale --------------------------------------------------- */
+  --gray-50:           #fafbfc;
+  --gray-100:          #f5f6fa;
+  --gray-200:          #e4e7ec;
+
+  /* ── Chart palette (muted, desaturated) ---------------------------- */
+  --chart-blue:        #5a90ad;
+  --chart-green:       #7fa85a;
+  --chart-red:         #b8705a;
+  --chart-purple:      #7c7ec9;
+  --chart-yellow:      #c49a3c;
+  --chart-teal:        #4e9e8e;
+  --chart-blue-1:      #f0f6f9;
+  --chart-blue-2:      #dceef3;
+  --chart-blue-4:      #99c3d9;
+  --chart-blue-5:      #6fa9c3;
+  --chart-blue-7:      #4a7a94;
+
+  /* ── Orange accent ------------------------------------------------ */
+  --orange-2:          #ffe7ba;
+  --orange-6:          #fa8c16;
+  --orange-7:          #d46b08;
+
+  /* ── Control item states ----------------------------------------- */
+  --control-active-bg: #edf4fe;
+  --control-hover-bg:  #f2f7ff;
+
+  /* ── Typography scale -------------------------------------------- */
+  --font-sans:
+    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:
+    'Space Mono', 'SF Mono', Consolas, 'Courier New', monospace;
+
+  --fs-xs:    10px;
+  --fs-sm:    12px;   /* caption, dense table */
+  --fs-md:    14px;   /* body default */
+  --fs-lg:    16px;   /* large body / H5 */
+  --fs-xl:    20px;   /* H4 */
+  --fs-2xl:   24px;   /* H3 */
+  --fs-3xl:   30px;   /* H2 */
+  --fs-4xl:   38px;   /* H1 */
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  --lh-sm: 16px;
+  --lh-md: 20px;
+  --lh-lg: 24px;
+  --lh-xl: 32px;
+
+  /* ── Spacing ------------------------------------------------------ */
+  --sp-0:   0;
+  --sp-xxs: 4px;
+  --sp-xs:  8px;
+  --sp-sm:  12px;
+  --sp-md:  16px;
+  --sp-lg:  24px;
+  --sp-xl:  32px;
+  --sp-xxl: 48px;
+  --sp-xxxl:64px;
+
+  /* ── Radius ------------------------------------------------------- */
+  --r-sm:   4px;
+  --r-md:   6px;      /* default */
+  --r-lg:   8px;
+  --r-xl:   12px;
+  --r-xxl:  16px;
+  --r-pill: 32px;
+  --r-round: 9999px;
+
+  /* ── Shadow / elevation ------------------------------------------ */
+  --shadow-xs:   0 1px 2px rgba(0,0,0,0.03);
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02);
+  --shadow-card: 0 2px 4px rgba(0,0,0,0.02), 0 1px 6px -1px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.031);
+  --shadow-md:   0 2px 4px rgba(0,0,0,0.05), 0 1px 6px rgba(0,0,0,0.05);
+  --shadow-lg:   0 4px 8px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-xl:   0 8px 16px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+
+  /* ── Layout -------------------------------------------------------- */
+  --sidebar-w:         296px;
+  --sidebar-w-sm:      80px;
+  --header-h:          64px;
+
+  /* ── Semantic type rules ----------------------------------------- */
+  --h1-size:   var(--fs-4xl);  --h1-lh: 46px;  --h1-weight: 600;
+  --h2-size:   var(--fs-3xl);  --h2-lh: 38px;  --h2-weight: 600;
+  --h3-size:   var(--fs-2xl);  --h3-lh: 32px;  --h3-weight: 600;
+  --h4-size:   var(--fs-xl);   --h4-lh: 28px;  --h4-weight: 600;
+  --h5-size:   var(--fs-lg);   --h5-lh: 24px;  --h5-weight: 600;
+  --body-size: var(--fs-md);   --body-lh: 20px; --body-weight: 400;
+  --caption-size: var(--fs-sm); --caption-lh: 16px;
+}
+
+/* ---- Dark mode (from Figma dark variable set) --------------------- */
+[data-theme='dark'] {
+  --bg-layout:         #020b17;
+  --bg-container:      #0f1922;
+  --bg-spotlight:      #1a2733;
+  --bg-elevated:       #1a2733;
+
+  --fg-heading:        rgba(255,255,255,0.88);
+  --fg-body:           rgba(255,255,255,0.88);
+  --fg-description:    rgba(255,255,255,0.65);
+  --fg-secondary:      rgba(255,255,255,0.65);
+  --fg-disabled:       rgba(255,255,255,0.25);
+  --fg-placeholder:    rgba(255,255,255,0.25);
+
+  --primary:           #5a95f0;
+  --primary-hover:     #7aa7f2;
+  --primary-bg:        #112b4a;
+  --primary-bg-hover:  #1f4475;
+  --primary-text:      #7aa7f2;
+
+  --success:           #6fc67d;
+  --warning:           #f5cf66;
+  --error:             #e4756d;
+
+  --border:            rgba(255,255,255,0.149);
+  --border-split:      rgba(255,255,255,0.078);
+
+  --icon:              rgba(255,255,255,0.45);
+  --icon-hover:        rgba(255,255,255,0.85);
+
+  --control-active-bg: #243549;
+  --control-hover-bg:  #2d425c;
+}
+
+/* ---- Semantic base styles ---------------------------------------- */
+html, body {
+  font-family: var(--font-sans);
+  font-size:   var(--body-size);
+  line-height: var(--body-lh);
+  color:       var(--fg-body);
+  background:  var(--bg-layout);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 { font-size: var(--h1-size); line-height: var(--h1-lh); font-weight: var(--h1-weight); color: var(--fg-heading); margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: var(--h2-size); line-height: var(--h2-lh); font-weight: var(--h2-weight); color: var(--fg-heading); margin: 0; letter-spacing: -0.005em; }
+h3 { font-size: var(--h3-size); line-height: var(--h3-lh); font-weight: var(--h3-weight); color: var(--fg-heading); margin: 0; }
+h4 { font-size: var(--h4-size); line-height: var(--h4-lh); font-weight: var(--h4-weight); color: var(--fg-heading); margin: 0; }
+h5 { font-size: var(--h5-size); line-height: var(--h5-lh); font-weight: var(--h5-weight); color: var(--fg-heading); margin: 0; }
+
+p          { font-size: var(--body-size); line-height: var(--body-lh); color: var(--fg-body); margin: 0; }
+small,
+.caption   { font-size: var(--caption-size); line-height: var(--caption-lh); color: var(--fg-secondary); }
+code, kbd  { font-family: var(--font-mono); font-size: var(--fs-sm); }
+a          { color: var(--link); text-decoration: none; }
+a:hover    { color: var(--link-active); }
+hr         { border: 0; border-top: 1px solid var(--border-split); margin: var(--sp-md) 0; }

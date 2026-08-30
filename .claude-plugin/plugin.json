@@ -1,0 +1,10 @@
+{
+  "name": "skills",
+  "version": "0.1.0",
+  "description": "Skills and agents for Claude Code — visual verification, shareable HTML artifacts, arXiv research intake, model routing, deck and theme systems, and specialist advisor agents.",
+  "author": { "name": "Vimox Shah", "url": "https://github.com/vimoxshah" },
+  "homepage": "https://github.com/vimoxshah/skills",
+  "repository": "https://github.com/vimoxshah/skills",
+  "license": "MIT",
+  "keywords": ["skills", "agents", "subagents", "claude-code", "routing", "research", "design"]
+}

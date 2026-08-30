@@ -1,0 +1,97 @@
+# TRANSCRIBED from house-decks/template/deck.html — do NOT hand-edit the
+# deck_tokens block. Regenerate with scripts/import-house-themes.py so it
+# stays faithful to the template (which is the source of truth).
+meta:
+  name: house-boot
+  label: House Boot
+  default: false
+  contexts: [internal, engineering, demo, terminal]
+  modes: [dark]
+  mood: house / proven
+  source_of_truth: house-decks/template/deck.html  (data-theme="boot")
+  transcribed: true
+  best_for: >
+    The house dark theme. Deep navy ground with cyan accent — the one built-in
+    theme designed for a dark room and terminal-heavy content.
+
+colors:
+  ground: {dark: "#08121b"}
+  raise: {dark: "#0f1d2b"}
+  sunk: {dark: "#0d1a26"}
+  ink: {dark: "#e7f1f8"}
+  ink-soft: {dark: "#93aabb"}
+  ink-faint: {dark: "#5b7080"}
+  rule: {dark: "#193043"}
+  rule-soft: {dark: "#13242f"}
+  accent: {dark: "#1fb0ec"}
+  accent-bg: {dark: "rgba(31,176,236,.13)"}
+
+emphasis:
+  accent: "#1fb0ec"
+  coral: "#f0ad48"      # template's --accent2 (drives .c-coral)
+  green: "#1fd1bd"      # template's --accent3 (drives .c-green)
+
+semantic:
+  ok: "#1fd1bd"
+  warn: "#f0ad48"
+  alert: "#f0ad48"
+
+fonts:
+  default: house-plex
+  compatible: [house-plex, space-ibm, archivo-tight, system-stack]
+  incompatible:
+    anton-archivo: "poster caps are not the house voice — it is a grotesque"
+    archivo-black-mono: "poster weight is not the house voice"
+    fraunces-archivo: "the house display face is a grotesque, not a serif"
+    newsreader-archivo: "the house display face is a grotesque, not a serif"
+
+rationing:
+  max_emphasis_per_slide: 2
+  hero_hue: accent
+  rule: >
+    House behaviour: the accent carries emphasis in headings, --accent2
+    (.c-coral) marks problems, --accent3 (.c-green) marks resolutions.
+    The ground stays quiet — hierarchy comes from LIGHTNESS, not from
+    saturating everything in the accent hue.
+
+charts:
+  categorical: ["#1fb0ec", "#f0ad48", "#1fd1bd", "#1F6FB2", "#B35C00", "#516F35"]
+  sequential:  ["#04151C", "#193A47", "#2E5E72", "#43839D", "#58A7C8", "#6DCCF3"]
+  diverging:   ["#C62531", "#E9A0BE", "#E8EAF2", "#8FD3CB", "#1fd1bd"]
+  good: "#1fd1bd"
+  bad: "#C62531"
+
+# every token below is copied verbatim from the template
+deck_tokens:
+  --bg: "#08121b"
+  --bg-soft: "#0d1a26"
+  --bg-tint: "#0b1722"
+  --card: "#0f1d2b"
+  --ink: "#e7f1f8"
+  --ink-dim: "#93aabb"
+  --ink-mute: "#5b7080"
+  --border: "#193043"
+  --border-soft: "#13242f"
+  --accent: "#1fb0ec"
+  --accent-deep: "#0f8fcb"
+  --accent-soft: "rgba(31,176,236,.13)"
+  --accent-line: "rgba(31,176,236,.34)"
+  --accent2: "#f0ad48"
+  --accent2-soft: "rgba(240,173,72,.13)"
+  --accent2-line: "rgba(240,173,72,.36)"
+  --accent3: "#1fd1bd"
+  --accent3-soft: "rgba(31,209,189,.14)"
+  --accent3-line: "rgba(31,209,189,.40)"
+  --shadow: "0 24px 64px rgba(0,0,0,.55)"
+  --shadow-sm: "0 10px 30px rgba(0,0,0,.45)"
+  --moment-bg: "radial-gradient(1100px 640px at 86% -16%,rgba(31,176,236,.26),transparent 56%),radial-gradient(820px 520px at 2% 118%,rgba(31,209,189,.13),transparent 58%),linear-gradient(155deg,#05111a 0%,#0a2434 100%)"
+  --moment-ink: "#eaf4fb"
+  --moment-dim: "#97aebf"
+  --moment-mute: "#5b7080"
+  --moment-accent: "#5cc6f2"
+  --moment-card: "rgba(255,255,255,.05)"
+  --moment-border: "rgba(255,255,255,.12)"
+  --term-bg: "#051019"
+  --term-head: "#0a2030"
+  --term-ink: "#e6f1f8"
+  --term-dim: "#7fa1b4"

@@ -1,0 +1,97 @@
+# TRANSCRIBED from house-decks/template/deck.html — do NOT hand-edit the
+# deck_tokens block. Regenerate with scripts/import-house-themes.py so it
+# stays faithful to the template (which is the source of truth).
+meta:
+  name: house-keynote
+  label: House Keynote
+  default: false
+  contexts: [internal, exec, vision, narrative]
+  modes: [light]
+  mood: house / proven
+  source_of_truth: house-decks/template/deck.html  (data-theme="keynote")
+  transcribed: true
+  best_for: >
+    The house warm theme. Paper-cream ground, terracotta accent, green and
+    olive secondaries — reads considered and unhurried.
+
+colors:
+  ground: {light: "#f7f3ec"}
+  raise: {light: "#fffdf9"}
+  sunk: {light: "#efe8dc"}
+  ink: {light: "#272218"}
+  ink-soft: {light: "#5f574a"}
+  ink-faint: {light: "#9a9080"}
+  rule: {light: "#e3dccd"}
+  rule-soft: {light: "#ece5d8"}
+  accent: {light: "#bb5a32"}
+  accent-bg: {light: "rgba(187,90,50,.10)"}
+
+emphasis:
+  accent: "#bb5a32"
+  coral: "#3f7d6e"      # template's --accent2 (drives .c-coral)
+  green: "#8a7a3f"      # template's --accent3 (drives .c-green)
+
+semantic:
+  ok: "#8a7a3f"
+  warn: "#3f7d6e"
+  alert: "#3f7d6e"
+
+fonts:
+  default: house-plex
+  compatible: [house-plex, space-ibm, archivo-tight, system-stack]
+  incompatible:
+    anton-archivo: "poster caps are not the house voice — it is a grotesque"
+    archivo-black-mono: "poster weight is not the house voice"
+    fraunces-archivo: "the house display face is a grotesque, not a serif"
+    newsreader-archivo: "the house display face is a grotesque, not a serif"
+
+rationing:
+  max_emphasis_per_slide: 2
+  hero_hue: accent
+  rule: >
+    House behaviour: the accent carries emphasis in headings, --accent2
+    (.c-coral) marks problems, --accent3 (.c-green) marks resolutions.
+    The ground stays quiet — hierarchy comes from LIGHTNESS, not from
+    saturating everything in the accent hue.
+
+charts:
+  categorical: ["#bb5a32", "#3f7d6e", "#8a7a3f", "#1F6FB2", "#4C6B2F", "#8A3FA0"]
+  sequential:  ["#F7EBE6", "#DEC8BE", "#C5A497", "#AC816F", "#935D48", "#7A3A20"]
+  diverging:   ["#C1121F", "#E9A0BE", "#E8EAF2", "#8FD3CB", "#8a7a3f"]
+  good: "#8a7a3f"
+  bad: "#C1121F"
+
+# every token below is copied verbatim from the template
+deck_tokens:
+  --bg: "#f7f3ec"
+  --bg-soft: "#efe8dc"
+  --bg-tint: "#f0eadf"
+  --card: "#fffdf9"
+  --ink: "#272218"
+  --ink-dim: "#5f574a"
+  --ink-mute: "#9a9080"
+  --border: "#e3dccd"
+  --border-soft: "#ece5d8"
+  --accent: "#bb5a32"
+  --accent-deep: "#9c4823"
+  --accent-soft: "rgba(187,90,50,.10)"
+  --accent-line: "rgba(187,90,50,.30)"
+  --accent2: "#3f7d6e"
+  --accent2-soft: "rgba(63,125,110,.10)"
+  --accent2-line: "rgba(63,125,110,.34)"
+  --accent3: "#8a7a3f"
+  --accent3-soft: "rgba(138,122,63,.13)"
+  --accent3-line: "rgba(138,122,63,.40)"
+  --shadow: "0 22px 56px rgba(70,55,30,.14)"
+  --shadow-sm: "0 8px 22px rgba(70,55,30,.10)"
+  --moment-bg: "radial-gradient(1100px 640px at 86% -14%,rgba(187,90,50,.30),transparent 56%),linear-gradient(155deg,#241f17 0%,#3a3225 100%)"
+  --moment-ink: "#f7f3ec"
+  --moment-dim: "#d6cdba"
+  --moment-mute: "#9a9080"
+  --moment-accent: "#e0a07c"
+  --moment-card: "rgba(255,255,255,.06)"
+  --moment-border: "rgba(255,255,255,.14)"
+  --term-bg: "#26201a"
+  --term-head: "#322a20"
+  --term-ink: "#f3ecdf"
+  --term-dim: "#b3a890"

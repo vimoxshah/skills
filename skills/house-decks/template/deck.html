@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en" data-theme="indigo">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Product — The Agentic Operating System · Day 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================ TYPE SCALE & TOKENS ============================ */
+:root{
+  --type-display:122px; --type-title:67px; --type-h:50px; --type-sub:32px;
+  --type-body:29px; --type-small:24px; --type-mono:24px; --type-eyebrow:24px;
+  --pad-x:120px; --pad-top:92px; --pad-bottom:84px;
+  --gap:34px; --radius:20px; --radius-sm:13px;
+  --font:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --display:'Space Grotesk','IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+/* ---- THEME: AURORA (default · cyan / navy / amber / teal) ---- */
+:root[data-theme="aurora"]{
+  --bg:#f5f9fc; --bg-soft:#eaf1f7; --bg-tint:#e3edf4; --card:#ffffff;
+  --ink:#0c2c44; --ink-dim:#496078; --ink-mute:#8597a8; --border:#dce6ef; --border-soft:#e9f0f6;
+  --accent:#0f9ed8; --accent-deep:#0b7eaf; --accent-soft:rgba(15,158,216,.10); --accent-line:rgba(15,158,216,.30);
+  --accent2:#e6a23a; --accent2-soft:rgba(230,162,58,.12); --accent2-line:rgba(230,162,58,.38);
+  --accent3:#12b3a2; --accent3-soft:rgba(18,179,162,.12); --accent3-line:rgba(18,179,162,.40);
+  --shadow:0 22px 60px rgba(10,40,68,.13); --shadow-sm:0 8px 24px rgba(10,40,68,.09);
+  --moment-bg:radial-gradient(1200px 680px at 88% -14%,rgba(15,158,216,.38),transparent 56%),radial-gradient(840px 520px at 2% 118%,rgba(230,162,58,.16),transparent 58%),linear-gradient(155deg,#072334 0%,#0d3a58 100%);
+  --moment-ink:#ffffff; --moment-dim:#bcd2e0; --moment-mute:#6f8a9d; --moment-accent:#54c6f2; --moment-card:rgba(255,255,255,.06); --moment-border:rgba(255,255,255,.15);
+  --term-bg:#07273a; --term-head:#0c3450; --term-ink:#e6f1f8; --term-dim:#7fa1b4;
+}
+/* ---- THEME: INDIGO (light · violet / magenta / teal) ---- */
+:root[data-theme="indigo"]{
+  --bg:#f7f7fd; --bg-soft:#eeedf8; --bg-tint:#e8e6f6; --card:#ffffff;
+  --ink:#1d1b3c; --ink-dim:#54527c; --ink-mute:#8d8bac; --border:#e5e3f1; --border-soft:#efeef8;
+  --accent:#6d4aff; --accent-deep:#5634d6; --accent-soft:rgba(109,74,255,.10); --accent-line:rgba(109,74,255,.30);
+  --accent2:#e83a8e; --accent2-soft:rgba(232,58,142,.12); --accent2-line:rgba(232,58,142,.36);
+  --accent3:#12b3a2; --accent3-soft:rgba(18,179,162,.12); --accent3-line:rgba(18,179,162,.40);
+  --shadow:0 22px 60px rgba(40,30,90,.14); --shadow-sm:0 8px 24px rgba(40,30,90,.10);
+  --moment-bg:radial-gradient(1200px 680px at 88% -14%,rgba(109,74,255,.42),transparent 56%),radial-gradient(840px 520px at 2% 118%,rgba(232,58,142,.18),transparent 58%),linear-gradient(155deg,#15123a 0%,#241f55 100%);
+  --moment-ink:#ffffff; --moment-dim:#cdc9e8; --moment-mute:#8784ac; --moment-accent:#b9a6ff; --moment-card:rgba(255,255,255,.06); --moment-border:rgba(255,255,255,.15);
+  --term-bg:#14113a; --term-head:#201c4e; --term-ink:#ece9fb; --term-dim:#9a93c0;
+}
+/* ---- THEME: BOOT (dark / terminal — Aurora family) ---- */
+:root[data-theme="boot"]{
+  --bg:#08121b; --bg-soft:#0d1a26; --bg-tint:#0b1722; --card:#0f1d2b;
+  --ink:#e7f1f8; --ink-dim:#93aabb; --ink-mute:#5b7080; --border:#193043; --border-soft:#13242f;
+  --accent:#1fb0ec; --accent-deep:#0f8fcb; --accent-soft:rgba(31,176,236,.13); --accent-line:rgba(31,176,236,.34);
+  --accent2:#f0ad48; --accent2-soft:rgba(240,173,72,.13); --accent2-line:rgba(240,173,72,.36);
+  --accent3:#1fd1bd; --accent3-soft:rgba(31,209,189,.14); --accent3-line:rgba(31,209,189,.40);
+  --shadow:0 24px 64px rgba(0,0,0,.55); --shadow-sm:0 10px 30px rgba(0,0,0,.45);
+  --moment-bg:radial-gradient(1100px 640px at 86% -16%,rgba(31,176,236,.26),transparent 56%),radial-gradient(820px 520px at 2% 118%,rgba(31,209,189,.13),transparent 58%),linear-gradient(155deg,#05111a 0%,#0a2434 100%);
+  --moment-ink:#eaf4fb; --moment-dim:#97aebf; --moment-mute:#5b7080; --moment-accent:#5cc6f2; --moment-card:rgba(255,255,255,.05); --moment-border:rgba(255,255,255,.12);
+  --term-bg:#051019; --term-head:#0a2030; --term-ink:#e6f1f8; --term-dim:#7fa1b4;
+}
+/* ---- THEME: KEYNOTE (calm premium) ---- */
+:root[data-theme="keynote"]{
+  --bg:#f7f3ec; --bg-soft:#efe8dc; --bg-tint:#f0eadf; --card:#fffdf9;
+  --ink:#272218; --ink-dim:#5f574a; --ink-mute:#9a9080; --border:#e3dccd; --border-soft:#ece5d8;
+  --accent:#bb5a32; --accent-deep:#9c4823; --accent-soft:rgba(187,90,50,.10); --accent-line:rgba(187,90,50,.30);
+  --accent2:#3f7d6e; --accent2-soft:rgba(63,125,110,.10); --accent2-line:rgba(63,125,110,.34);
+  --accent3:#8a7a3f; --accent3-soft:rgba(138,122,63,.13); --accent3-line:rgba(138,122,63,.40);
+  --shadow:0 22px 56px rgba(70,55,30,.14); --shadow-sm:0 8px 22px rgba(70,55,30,.10);
+  --moment-bg:radial-gradient(1100px 640px at 86% -14%,rgba(187,90,50,.30),transparent 56%),linear-gradient(155deg,#241f17 0%,#3a3225 100%);
+  --moment-ink:#f7f3ec; --moment-dim:#d6cdba; --moment-mute:#9a9080; --moment-accent:#e0a07c; --moment-card:rgba(255,255,255,.06); --moment-border:rgba(255,255,255,.14);
+  --term-bg:#26201a; --term-head:#322a20; --term-ink:#f3ecdf; --term-dim:#b3a890;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;height:100%;}
+body{background:var(--bg);font-family:var(--font);-webkit-font-smoothing:antialiased;color:var(--ink);}
+deck-stage:not(:defined){visibility:hidden;}
+.mono{font-family:var(--mono);}
+h1,.display,.divider-title,.card h3,.layer .lt,.fnode,.statstrip .stat .n{font-family:var(--display);}
+.logo-chip{display:inline-flex; align-items:center; background:#fff; border-radius:15px; padding:15px 24px; box-shadow:0 10px 30px rgba(0,0,0,.28);}
+.logo-chip img{height:46px; display:block;}
+.brand{position:absolute; top:54px; left:var(--pad-x);}
+.brand img{height:42px; display:block;}
+.slide.moment .brand img{filter:brightness(0) invert(1); opacity:.9;}
+.logo-text{font-weight:700; letter-spacing:-.02em;}
+.kicker{font-family:var(--mono); font-weight:600; font-size:24px; letter-spacing:.2em; text-transform:uppercase; color:var(--moment-accent); margin-bottom:22px;}
+
+/* ============================ SLIDE BASE ============================ */
+.slide{
+  padding:var(--pad-top) var(--pad-x) var(--pad-bottom);
+  display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+  background:var(--bg); color:var(--ink); overflow:hidden;
+}
+.slide.center{justify-content:center;}
+.slide.top{justify-content:flex-start;}
+.slide > *{flex-shrink:0;}
+.slide > h1,.slide > h2,.slide > p{align-self:stretch; max-width:100%;}
+.slide.moment{background:var(--moment-bg); color:var(--moment-ink);}
+.slide.moment h1,.slide.moment h2,.slide.moment h3{color:var(--moment-ink);}
+
+/* ---- eyebrow ---- */
+.eyebrow{
+  display:inline-flex; align-items:center; gap:11px;
+  font-size:var(--type-eyebrow); font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); padding:9px 18px; border:1px solid var(--accent-line);
+  border-radius:999px; background:var(--accent-soft); margin-bottom:30px; white-space:nowrap;
+}
+.slide.moment .eyebrow{color:var(--moment-accent); border-color:var(--moment-border); background:var(--moment-card);}
+.eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--accent2);box-shadow:0 0 12px var(--accent2);}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) .eyebrow .dot{animation:pulse 2.1s ease-in-out infinite;}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ---- headings ---- */
+h1{font-size:var(--type-title); line-height:1.04; letter-spacing:-.025em; font-weight:800; margin:0; color:var(--ink); text-wrap:balance;}
+h2.sub{font-size:var(--type-sub); font-weight:600; color:var(--accent); margin:22px 0 0; letter-spacing:-.01em; max-width:1500px; text-wrap:pretty;}
+.slide.moment h2.sub{color:var(--moment-accent);}
+h2.sub.coral{color:var(--accent2);}
+h2.sub.green{color:var(--accent3);}
+p{margin:0; color:var(--ink-dim); line-height:1.5; font-size:var(--type-body);}
+.slide.moment p{color:var(--moment-dim);}
+b,strong{color:var(--ink); font-weight:700;} .slide.moment b,.slide.moment strong{color:var(--moment-ink);}
+.c-accent{color:var(--accent);} .c-coral{color:var(--accent2);} .c-green{color:var(--accent3);}
+.spacer{flex:0 0 0; height:0;}
+
+/* ---- big display title ---- */
+.display{font-size:var(--type-display); line-height:.98; letter-spacing:-.035em; font-weight:900; margin:0; text-wrap:balance;}
+.display .grad{background:linear-gradient(110deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+/* ---- wordmark ---- */
+.wordmark{display:inline-flex; align-items:center; gap:14px; font-weight:900; letter-spacing:.02em; font-size:26px; color:var(--ink);}
+.slide.moment .wordmark{color:var(--moment-ink);}
+.wordmark .mark{width:30px; height:34px; background:linear-gradient(150deg,var(--accent),var(--accent2)); clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%); flex:0 0 auto;}
+.wordmark .gx{font-family:var(--font);}
+.wordmark .tag{font-family:var(--mono); font-weight:600; font-size:24px; letter-spacing:.12em; color:var(--ink-mute); text-transform:uppercase; padding-left:14px; margin-left:4px; border-left:1px solid var(--border); white-space:nowrap;}
+.slide.moment .wordmark .tag{color:var(--moment-mute); border-color:var(--moment-border);}
+
+/* ---- accent bar ---- */
+.accentbar{display:flex; gap:10px;}
+.accentbar span{height:9px; width:78px; border-radius:5px;}
+.accentbar span:nth-child(1){background:var(--accent);}
+.accentbar span:nth-child(2){background:var(--accent2);}
+.accentbar span:nth-child(3){background:var(--accent3);}
+
+/* ---- stat strip ---- */
+.statstrip{display:flex; flex-wrap:wrap; gap:18px 52px;}
+.statstrip .stat{display:flex; flex-direction:column; gap:4px;}
+.statstrip .stat .n{font-size:60px; font-weight:900; letter-spacing:-.03em; line-height:1; font-family:var(--font);
+  background:linear-gradient(170deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.slide.moment .statstrip .stat .n{background:linear-gradient(170deg,var(--moment-accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.statstrip .stat .l{font-size:24px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-mute);}
+.slide.moment .statstrip .stat .l{color:var(--moment-mute);}
+
+/* ---- generic lists ---- */
+ul.feat{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:var(--gap);}
+ul.feat li{position:relative; padding-left:40px; font-size:var(--type-body); line-height:1.42; color:var(--ink-dim); text-wrap:pretty;}
+.slide.moment ul.feat li{color:var(--moment-dim);}
+ul.feat li::before{content:""; position:absolute; left:0; top:.42em; width:16px; height:16px; border-radius:5px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));}
+
+/* ---- cards ---- */
+.cards{display:grid; gap:22px;}
+.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:30px 32px; box-shadow:var(--shadow-sm);}
+.slide.moment .card{background:var(--moment-card); border-color:var(--moment-border); box-shadow:none;}
+.card h3{margin:0 0 12px; font-size:27px; font-weight:800; color:var(--ink); letter-spacing:-.01em;}
+.slide.moment .card h3{color:var(--moment-ink);}
+.card p{margin:0; font-size:var(--type-small); color:var(--ink-dim); line-height:1.45;}
+.slide.moment .card p{color:var(--moment-dim);}
+
+/* ---- two-column ---- */
+.two{display:grid; grid-template-columns:1fr 1fr; gap:54px; width:100%; align-items:start;}
+.two.wide-l{grid-template-columns:1.15fr .85fr;}
+.two.wide-r{grid-template-columns:.85fr 1.15fr;}
+
+/* ---- chips ---- */
+.chiprow{display:flex; flex-wrap:wrap; gap:13px;}
+.chip{display:inline-flex; align-items:center; gap:9px; padding:12px 20px; border-radius:999px; font-size:24px; font-weight:600;
+  border:1px solid var(--border); background:var(--card); color:var(--ink); box-shadow:var(--shadow-sm);}
+.slide.moment .chip{background:var(--moment-card); border-color:var(--moment-border); color:var(--moment-ink); box-shadow:none;}
+.chip .k{font-family:var(--mono); font-weight:700; color:var(--accent);}
+.chip.mono{font-family:var(--mono); font-weight:600; font-size:22px;}
+
+/* ---- divider index ---- */
+.divider-wrap{display:flex; flex-direction:column; gap:18px;}
+.divider-idx{font-family:var(--mono); font-weight:700; font-size:30px; letter-spacing:.3em; color:var(--moment-accent);}
+.divider-title{font-size:96px; font-weight:900; letter-spacing:-.03em; line-height:1.0; color:var(--moment-ink);}
+.divider-sub{font-size:var(--type-sub); color:var(--moment-dim); margin-top:8px; max-width:1300px;}
+
+/* ---- 'you are here' section map on dividers ---- */
+.navmap{display:flex; align-items:center; gap:14px; margin-top:34px; flex-wrap:wrap;}
+.navmap .nm{display:flex; align-items:center; gap:13px; font-family:var(--mono); font-size:21px; font-weight:700; color:var(--moment-dim); opacity:.5;}
+.navmap .nm .nmn{display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; border:2px solid var(--moment-dim); font-size:17px;}
+.navmap .nm.done{opacity:.78;}
+.navmap .nm.done .nmn{border-color:var(--moment-accent); color:var(--moment-accent);}
+.navmap .nm.active{opacity:1; color:var(--moment-ink);}
+.navmap .nm.active .nmn{background:var(--moment-accent); border-color:var(--moment-accent); color:#fff;}
+.navmap .nmsep{width:34px; height:2px; background:var(--moment-dim); opacity:.4; border-radius:2px;}
+
+/* ---- command-map golden-path trace ---- */
+.cmdgroup li.gp{position:relative; font-weight:700; padding-left:15px; border-radius:5px;}
+.cmdgroup li.gp::before{content:""; position:absolute; left:2px; top:50%; transform:translateY(-50%); width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 0 var(--accent);}
+@media (prefers-reduced-motion:no-preference){
+  html:not(.motion-off) [data-deck-active] .cmdgroup li.gp{animation:gptrace .55s cubic-bezier(.2,.8,.3,1) both; animation-delay:calc(.7s + var(--g,0)*.2s);}
+  html:not(.motion-off) [data-deck-active] .cmdgroup li.gp::before{animation:gpdot .55s ease both; animation-delay:calc(.7s + var(--g,0)*.2s);}
+}
+@keyframes gptrace{0%{background:transparent;} 35%{background:color-mix(in oklab, var(--accent) 26%, transparent);} 100%{background:color-mix(in oklab, var(--accent) 9%, transparent);}}
+@keyframes gpdot{0%{box-shadow:0 0 0 0 var(--accent); transform:translateY(-50%) scale(.6);} 45%{box-shadow:0 0 12px 3px var(--accent); transform:translateY(-50%) scale(1.35);} 100%{box-shadow:0 0 0 0 transparent; transform:translateY(-50%) scale(1);}}
+.cmdgroup li.gp{background:color-mix(in oklab, var(--accent) 9%, transparent);}
+
+/* ---- footnote ---- */
+.foot{font-size:21px; color:var(--ink-mute); line-height:1.4; position:absolute; left:var(--pad-x); right:var(--pad-x); bottom:var(--pad-bottom); margin:0;}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) [data-deck-active] .pop{opacity:0; animation:pop .62s cubic-bezier(.2,.85,.3,1.04) both; animation-delay:calc(var(--i,0)*.08s);}}
+@keyframes pop{from{opacity:0; transform:scale(.9) translateY(12px);}to{opacity:1; transform:none;}}
+.slide.moment .foot{color:var(--moment-mute);}
+
+/* ============================ FLOW / LOOP DIAGRAM ============================ */
+.flow{display:flex; align-items:center; flex-wrap:wrap; gap:14px;}
+.fnode{padding:18px 22px; border-radius:15px; font-size:24px; font-weight:700; line-height:1.15; text-align:center;
+  background:var(--card); border:1px solid var(--border); color:var(--ink); box-shadow:var(--shadow-sm); position:relative;}
+.fnode .sub{display:block; font-size:18px; font-weight:600; color:var(--ink-mute); margin-top:6px; font-family:var(--mono); letter-spacing:.01em;}
+.fnode.b{background:var(--accent); color:#fff; border-color:var(--accent-deep);} .fnode.b .sub{color:rgba(255,255,255,.82);}
+.fnode.g{background:var(--accent3-soft); color:var(--accent3); border-color:var(--accent3-line);} .fnode.g .sub{color:var(--accent3);}
+.fnode.w{background:var(--accent2); color:#fff; border-color:var(--accent2);} .fnode.w .sub{color:rgba(255,255,255,.85);}
+.fnode.ghost{background:transparent; border-style:dashed; color:var(--ink-dim); box-shadow:none;}
+.farr{color:var(--accent); font-size:32px; font-weight:800; flex:0 0 auto;}
+.farr.dim{color:var(--ink-mute); font-size:26px;}
+
+/* ============================ ANIMATIONS ============================ */
+.reveal{opacity:1;}
+@media (prefers-reduced-motion:no-preference){
+  html:not(.motion-off) [data-deck-active] .reveal{opacity:0; animation:rise .62s cubic-bezier(.2,.7,.25,1) forwards;}
+  html:not(.motion-off) [data-deck-active] .reveal{animation-delay:calc(var(--i,0)*.085s);}
+}
+@keyframes rise{from{opacity:0; transform:translateY(26px);}to{opacity:1; transform:none;}}
+/* slide-level fade-in handled by deck-stage; add a soft scale on moment slides */
+@media (prefers-reduced-motion:no-preference){
+  html:not(.motion-off) [data-deck-active].slide .kicker-line{transform-origin:left; animation:grow .7s .15s cubic-bezier(.2,.7,.25,1) both;}
+}
+@keyframes grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+
+/* ---- day-in-the-life timeline ---- */
+.dl-row{display:grid; grid-template-columns:130px 1fr 200px; gap:26px; align-items:center; padding:17px 0; border-bottom:1px solid var(--border);}
+.dl-t{font-size:30px; font-weight:800; color:var(--ink); letter-spacing:-.01em;}
+.dl-c{font-size:23px; line-height:1.45; color:var(--ink); text-wrap:pretty;}
+.dl-w{justify-self:end; text-align:center; font-size:18px; font-weight:700; color:var(--accent); background:var(--accent-soft); border:1px solid var(--accent-line); border-radius:999px; padding:8px 16px; white-space:nowrap;}
+
+/* ---- slide-2 equation build (Agent = Model + Harness) ---- */
+.eqrow .eqbox, .eqrow .eqop{opacity:1;}
+@media (prefers-reduced-motion:no-preference){
+  html:not(.motion-off) [data-deck-active] .eqrow .eqbox{opacity:0; animation:eqpop .6s cubic-bezier(.2,.85,.3,1.04) both; animation-delay:calc(var(--d,0)*1s);}
+  html:not(.motion-off) [data-deck-active] .eqrow .eqop{opacity:0; animation:eqpop .5s cubic-bezier(.2,.85,.3,1.04) both; animation-delay:calc(var(--d,0)*1s);}
+  html:not(.motion-off) [data-deck-active] .eqrow .eqhero{animation:eqpop .6s cubic-bezier(.2,.85,.3,1.04) both, eqglow 2.8s ease-in-out 1.5s infinite; animation-delay:calc(var(--d,0)*1s), 1.5s;}
+  html:not(.motion-off) [data-deck-active] .eqop{transform-origin:center; animation-name:eqpop, eqbreathe; animation-duration:.5s, 3.2s; animation-timing-function:cubic-bezier(.2,.85,.3,1.04), ease-in-out; animation-iteration-count:1, infinite; animation-delay:calc(var(--d,0)*1s), 1.6s; animation-fill-mode:both, none;}
+  html:not(.motion-off) [data-deck-active] .eqpunch::after{content:""; position:absolute; top:0; bottom:0; width:36%; left:-50%; background:linear-gradient(90deg,transparent,var(--accent-soft),transparent); animation:eqsheen 5s ease-in-out 1.8s infinite;}
+}
+.eqpunch{position:relative; overflow:hidden;}
+@keyframes eqpop{from{opacity:0; transform:scale(.84) translateY(16px);} to{opacity:1; transform:none;}}
+@keyframes eqglow{0%,100%{box-shadow:0 0 0 0 rgba(232,58,142,0);} 50%{box-shadow:0 0 40px 2px rgba(232,58,142,.32);}}
+@keyframes eqbreathe{0%,100%{transform:scale(1);} 50%{transform:scale(1.16);}}
+@keyframes eqsheen{0%{left:-50%;} 62%,100%{left:130%;}}
+
+/* ============================ TERMINAL ============================ */
+.terminal{width:100%; background:var(--term-bg); border-radius:18px; border:1px solid var(--moment-border); overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.5); font-family:var(--mono);}
+.term-head{display:flex; align-items:center; gap:10px; padding:16px 22px; background:var(--term-head); border-bottom:1px solid rgba(255,255,255,.06);}
+.term-head .dots{display:flex; gap:9px;}
+.term-head .dots i{width:14px; height:14px; border-radius:50%; display:block;}
+.term-head .dots i:nth-child(1){background:#ff5f57;} .term-head .dots i:nth-child(2){background:#febc2e;} .term-head .dots i:nth-child(3){background:#28c840;}
+.term-head .title{margin-left:10px; font-size:16px; color:var(--term-dim); font-weight:600;}
+.term-body{padding:26px 30px; font-size:21px; line-height:1.65; color:var(--term-ink); min-height:560px;}
+.term-line{display:block; white-space:pre-wrap;}
+.term-line .pr{color:var(--accent3); font-weight:700;}
+.term-line .cmd{color:var(--moment-accent); font-weight:700;}
+.term-line .ok{color:var(--accent3);}
+.term-line .warn{color:#febc2e;}
+.term-line .dim{color:var(--term-dim);}
+.term-line .file{color:#c7a3ff;}
+.cursor{display:inline-block; width:11px; height:23px; background:var(--accent3); vertical-align:-3px; margin-left:2px;}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) .cursor{animation:blink 1s step-end infinite;}}
+@keyframes blink{50%{opacity:0;}}
+
+/* ============================ TABLES ============================ */
+table.t{width:100%; border-collapse:collapse; font-size:var(--type-small); box-shadow:var(--shadow-sm); border-radius:14px; overflow:hidden;}
+table.t th{background:var(--ink); color:var(--bg); text-align:left; padding:16px 20px; font-weight:700; font-size:24px; letter-spacing:.02em;}
+table.t td{padding:15px 20px; border-bottom:1px solid var(--border-soft); vertical-align:top; color:var(--ink-dim); line-height:1.4;}
+table.t tr:nth-child(even) td{background:var(--bg-soft);}
+table.t td b{color:var(--ink);}
+table.t td:first-child{font-weight:700; color:var(--ink); white-space:nowrap;}
+
+/* ============================ COMMAND MAP ============================ */
+.cmdgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; width:100%;}
+.cmdgroup{background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:15px 18px; box-shadow:var(--shadow-sm);}
+.cmdgroup h4{margin:0 0 10px; font-size:16px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:9px;}
+.cmdgroup h4 .ph{font-family:var(--mono); color:var(--ink-mute); font-size:14px;}
+.cmdgroup ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px;}
+.cmdgroup li{font-family:var(--mono); font-size:17px; font-weight:600; color:var(--ink); line-height:1.2;}
+.cmdgroup li span{font-family:var(--font); font-weight:500; color:var(--ink-mute); font-size:14px; display:block; margin-top:1px;}
+.cmdgroup.hl{background:var(--accent-soft); border-color:var(--accent-line);}
+
+/* ---- layer stack ---- */
+.stack{display:flex; flex-direction:column; gap:14px; width:100%;}
+.layer{display:flex; align-items:center; gap:24px; padding:22px 30px; border-radius:16px; color:#fff; box-shadow:var(--shadow-sm);}
+.layer .lx{font-family:var(--mono); font-size:19px; font-weight:700; opacity:.9; min-width:120px; letter-spacing:.04em;}
+.layer .lt{font-size:28px; font-weight:800;}
+.layer .ld{font-size:19px; opacity:.92; font-weight:600; margin-left:auto; text-align:right; font-family:var(--mono);}
+.l1{background:linear-gradient(100deg,#2271ea,#3a82f0);}
+.l2{background:linear-gradient(100deg,#5b3fd6,#7a5af0);}
+.l3{background:linear-gradient(100deg,#1aa657,#2bd06f); color:#06281a;} .l3 .ld,.l3 .lx{color:#06281a;}
+.l4{background:linear-gradient(100deg,#e0863a,#f0a64f); color:#2a1606;} .l4 .ld,.l4 .lx{color:#2a1606;}
+.l5{background:linear-gradient(100deg,#f9543b,#ff7058);}
+.l6{background:linear-gradient(100deg,#2c2c52,#3a3a66);}
+.l7{background:linear-gradient(100deg,#13182e,#262b4d);}
+
+.loopflow{flex-wrap:nowrap; gap:7px; width:100%;}
+.loopflow .fnode{padding:16px 13px; font-size:21px; border-radius:13px;}
+.loopflow .fnode .sub{font-size:14px; margin-top:5px;}
+.loopflow .farr{font-size:25px;}
+
+/* progress dots for prototype reveal */
+.pdots{display:flex; gap:10px; margin-top:20px;}
+.pdots i{width:42px; height:6px; border-radius:3px; background:var(--moment-border);}
+.pdots i.on{background:var(--accent3);}
+
+/* ============================ LIVE SVG ANIMATION TOOLKIT ============================ */
+.livewrap{width:100%; display:flex; justify-content:center;}
+svg .flowpath{fill:none; stroke-width:3; stroke-linecap:round;}
+svg .pkt{fill:none; stroke-linecap:round;}
+@media (prefers-reduced-motion:no-preference){
+  html:not(.motion-off) svg .pkt{stroke-dasharray:14 220; animation:dashflow 2.6s linear infinite;}
+  html:not(.motion-off) svg .pkt.slow{animation-duration:3.8s;}
+  html:not(.motion-off) svg .pkt.d1{animation-delay:-.6s;} html:not(.motion-off) svg .pkt.d2{animation-delay:-1.2s;}
+  html:not(.motion-off) svg .pkt.d3{animation-delay:-1.8s;} html:not(.motion-off) svg .pkt.d4{animation-delay:-2.4s;}
+  html:not(.motion-off) svg .pulse{transform-box:fill-box; transform-origin:center; animation:nodepulse 2.4s ease-in-out infinite;}
+  html:not(.motion-off) svg .pulse.p2{animation-delay:-.8s;} html:not(.motion-off) svg .pulse.p3{animation-delay:-1.6s;}
+  html:not(.motion-off) svg .ring{transform-box:fill-box; transform-origin:center; animation:ringpulse 2.8s ease-out infinite;}
+  html:not(.motion-off) svg .ring.r2{animation-delay:-.9s;} html:not(.motion-off) svg .ring.r3{animation-delay:-1.8s;}
+  html:not(.motion-off) svg .spin{transform-box:fill-box; transform-origin:center; animation:spinslow 14s linear infinite;}
+  html:not(.motion-off) svg .blink{animation:softblink 1.6s steps(1) infinite;}
+  html:not(.motion-off) svg .bob{animation:bob 4s ease-in-out infinite;}
+  html:not(.motion-off) .typ{border-right:2px solid currentColor; animation:caret 1s steps(1) infinite;}
+  html:not(.motion-off) .sheen{background-size:200% 100%; animation:sheen 5s linear infinite;}
+}
+@keyframes dashflow{to{stroke-dashoffset:-234;}}
+@keyframes nodepulse{0%,100%{opacity:.55;}50%{opacity:1;}}
+@keyframes ringpulse{0%{transform:scale(.5);opacity:.7;}100%{transform:scale(2.4);opacity:0;}}
+@keyframes spinslow{to{transform:rotate(360deg);}}
+@keyframes softblink{0%,60%{opacity:1;}61%,100%{opacity:.15;}}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+@keyframes caret{50%{border-color:transparent;}}
+@keyframes sheen{to{background-position:-200% 0;}}
+/* live ticker (hero) */
+.ticker{font-family:var(--mono); font-size:21px; color:var(--moment-dim); height:30px; overflow:hidden; position:relative;}
+.ticker .line{display:flex; align-items:center; gap:12px; height:30px;}
+.ticker .ok{color:var(--accent3); font-weight:700;}
+.ticker .ev{color:var(--moment-accent);}
+.live-badge{display:inline-flex; align-items:center; gap:9px; font-family:var(--mono); font-size:18px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent3);}
+.live-badge .led{width:11px; height:11px; border-radius:50%; background:var(--accent3); box-shadow:0 0 12px var(--accent3);}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) .live-badge .led{animation:nodepulse 1.4s ease-in-out infinite;}}
+.live-panel{margin-top:22px; width:100%; max-width:580px; background:var(--moment-card); border:1px solid var(--moment-border); border-radius:15px; overflow:hidden; box-shadow:0 14px 40px rgba(0,0,0,.3);}
+.live-panel .lph{display:flex; align-items:center; gap:10px; padding:12px 20px; border-bottom:1px solid var(--moment-border); font-family:var(--mono); font-size:16px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent3);}
+.live-panel .lph .led{width:11px; height:11px; border-radius:50%; background:var(--accent3); box-shadow:0 0 12px var(--accent3);}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) .live-panel .lph .led{animation:nodepulse 1.4s ease-in-out infinite;}}
+.live-panel .lph .spark{margin-left:auto; display:flex; gap:4px; align-items:flex-end; height:18px;}
+.live-panel .lph .spark i{width:4px; background:var(--accent3); border-radius:2px; opacity:.7;}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) .live-panel .lph .spark i{animation:eq 1.1s ease-in-out infinite;}}
+.live-panel .lph .spark i:nth-child(2){animation-delay:.15s;} .live-panel .lph .spark i:nth-child(3){animation-delay:.3s;} .live-panel .lph .spark i:nth-child(4){animation-delay:.45s;} .live-panel .lph .spark i:nth-child(5){animation-delay:.6s;}
+@keyframes eq{0%,100%{height:5px;}50%{height:18px;}}
+.hero-ticker{height:138px; overflow:hidden; padding:10px 20px;}
+.hero-ticker .roll{display:flex; flex-direction:column;}
+.hero-ticker .ln{height:39px; display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:19px; color:var(--moment-dim); white-space:nowrap;}
+.hero-ticker .ln .ok{color:var(--accent3); font-weight:700;} .hero-ticker .ln .ev{color:var(--moment-accent); font-weight:700;} .hero-ticker .ln .wn{color:#febc2e;}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) .hero-ticker .roll{animation:tickroll 13s linear infinite;}}
+@keyframes tickroll{0%{transform:translateY(0);}100%{transform:translateY(-50%);}}
+/* phase pipeline (spec-driven loop) */
+.pipe{display:flex; align-items:stretch; gap:0; width:100%;}
+.phase{flex:1; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:15px 12px; display:flex; flex-direction:column; gap:8px; box-shadow:var(--shadow-sm); min-width:0;}
+.phase .ph{font-family:var(--mono); font-size:14px; font-weight:700; letter-spacing:.06em; color:var(--ink-mute); text-transform:uppercase; text-align:center;}
+.phase .cmd{font-family:var(--mono); font-size:17px; font-weight:600; color:var(--ink); text-align:center; padding:7px 4px; border-radius:8px; background:var(--bg-soft); white-space:nowrap;}
+.phase.hl{border-color:var(--accent-line); background:var(--accent-soft);} .phase.hl .ph{color:var(--accent);}
+.phase.hl .cmd{background:var(--accent); color:#fff;}
+.phase.hl2{border-color:var(--accent3-line); background:var(--accent3-soft);} .phase.hl2 .ph{color:var(--accent3);}
+.phase.hl2 .cmd{background:var(--accent3); color:#06281a;}
+.conn{flex:0 0 30px; align-self:center; position:relative; height:3px; background:var(--border);}
+.conn::after{content:""; position:absolute; top:50%; left:0; width:10px; height:10px; margin-top:-5px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent);}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) .conn::after{animation:conndot 1.8s linear infinite;}}
+html.motion-off .conn::after{left:50%; margin-left:-5px;}
+@keyframes conndot{0%{left:0; opacity:0;}18%{opacity:1;}82%{opacity:1;}100%{left:100%; opacity:0;}}
+.conn.c2::after{animation-delay:.26s;} .conn.c3::after{animation-delay:.52s;} .conn.c4::after{animation-delay:.78s;}
+.conn.c5::after{animation-delay:1.04s;} .conn.c6::after{animation-delay:1.3s;}
+.loopback{display:flex; align-items:center; justify-content:center; gap:12px; margin-top:18px; font-family:var(--mono); font-size:18px; color:var(--accent3); font-weight:600;}
+.loopback .lp{flex:0 0 auto; width:200px; height:2px; background:repeating-linear-gradient(90deg,var(--accent3) 0 8px,transparent 8px 16px);}
+/* OS architecture comparison (real OS vs agentic OS) */
+.osgrid{display:grid; grid-template-columns:1fr 96px 1.05fr; gap:11px 0; width:100%; align-items:stretch;}
+.oshead{font-family:var(--mono); font-size:17px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding-bottom:4px;}
+.oshead.l{text-align:right; color:var(--ink-mute);}
+.oshead.r{color:var(--accent);}
+.oslayer{border-radius:11px; padding:0 22px; height:58px; display:flex; align-items:center; font-size:22px; font-weight:600;}
+.oslayer.l{background:var(--bg-soft); border:1px solid var(--border); color:var(--ink-dim); justify-content:flex-end; font-family:var(--mono); font-size:20px;}
+.oslayer.r{border:1px solid var(--accent-line); background:var(--accent-soft); color:var(--ink); gap:12px;}
+.oslayer.r b{font-family:var(--display); font-weight:700;}
+.oslayer.r .sub{font-size:16px; color:var(--ink-dim); font-weight:500;}
+.osconn{position:relative;}
+.osconn::before{content:""; position:absolute; left:6px; right:6px; top:50%; height:2px; margin-top:-1px; background:var(--border);}
+.osconn::after{content:""; position:absolute; top:50%; left:6px; width:9px; height:9px; margin-top:-4.5px; border-radius:50%; background:var(--accent); box-shadow:0 0 9px var(--accent);}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) .osconn::after{animation:osflow 2s linear infinite;}}
+html.motion-off .osconn::after{left:50%;}
+@keyframes osflow{0%{left:6px;opacity:0;}20%{opacity:1;}80%{opacity:1;}100%{left:calc(100% - 14px);opacity:0;}}
+.osconn:nth-of-type(1)::after{animation-delay:0s;} .osconn:nth-of-type(2)::after{animation-delay:.22s;}
+.osconn:nth-of-type(3)::after{animation-delay:.44s;} .osconn:nth-of-type(4)::after{animation-delay:.66s;}
+.osconn:nth-of-type(5)::after{animation-delay:.88s;} .osconn:nth-of-type(6)::after{animation-delay:1.1s;}
+.osconn:nth-of-type(7)::after{animation-delay:1.32s;} .osconn:nth-of-type(8)::after{animation-delay:1.54s;}
+
+@media print{ .slide{break-after:page;} }
+</style>
+<link rel="stylesheet" href="deck-motion.css">
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+  <!-- ============ 0 · TITLE (live hero) ============ -->
+  <section class="slide moment" data-label="Title">
+    <div style="display:grid; grid-template-columns:1.02fr .98fr; gap:36px; width:100%; align-items:center;">
+      <div>
+        <span class="brand reveal" style="--i:0; position:static; display:inline-block; margin-bottom:26px;"><span class="logo-text">Your Logo</span></span>
+        <div class="kicker reveal" style="--i:1">Product Development Kit</div>
+        <h1 class="display reveal" style="--i:2; font-size:104px;">Product: The Agentic<br><span class="grad">Operating System</span></h1>
+        <h2 class="sub reveal" style="--i:3; max-width:760px">An AI-native way to build software across our microservices — an agent, a knowledge base of our systems, and safeguards around both.</h2>
+        <div class="accentbar reveal" style="--i:4; margin:32px 0 28px;"><span></span><span></span><span></span></div>
+        <div class="statstrip reveal" style="--i:5">
+          <div class="stat"><span class="n" data-count="48">48</span><span class="l">commands</span></div>
+          <div class="stat"><span class="n" data-count="11">11</span><span class="l">agents</span></div>
+          <div class="stat"><span class="n" data-count="22">22</span><span class="l">MCP tools</span></div>
+          <div class="stat"><span class="n" data-count="7">7</span><span class="l">substrates</span></div>
+        </div>
+      </div>
+      <div class="reveal" style="--i:4; display:flex; flex-direction:column; align-items:center;">
+        <svg class="livewrap" viewBox="0 0 840 660" width="100%" style="max-width:560px; overflow:visible;" role="img" aria-label="The agent uses Specs, Intelligence, MCP, Subagents and Guardrails">
+          <defs>
+            <radialGradient id="coreglow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+            </radialGradient>
+            <marker id="ah" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="var(--moment-accent)"/></marker>
+          </defs>
+          <!-- connection lines with arrowheads (agent → component) -->
+          <g style="stroke:var(--moment-border);" stroke-width="2" marker-end="url(#ah)">
+            <line x1="420" y1="330" x2="420" y2="121"/>
+            <line x1="420" y1="330" x2="576" y2="281"/>
+            <line x1="420" y1="330" x2="557" y2="504"/>
+            <line x1="420" y1="330" x2="283" y2="504"/>
+            <line x1="420" y1="330" x2="264" y2="281"/>
+          </g>
+          <!-- flowing packets -->
+          <g stroke-width="4">
+            <path class="pkt d1" style="stroke:var(--accent);" d="M420,330 L420,121"/>
+            <path class="pkt d2" style="stroke:var(--accent3);" d="M420,330 L576,281"/>
+            <path class="pkt d3" style="stroke:var(--accent2);" d="M420,330 L557,504"/>
+            <path class="pkt d4 slow" style="stroke:var(--moment-accent);" d="M420,330 L283,504"/>
+            <path class="pkt d2 slow" style="stroke:var(--accent);" d="M420,330 L264,281"/>
+          </g>
+          <!-- expanding rings on core -->
+          <circle class="ring" cx="420" cy="330" r="64" fill="none" style="stroke:var(--accent);" stroke-width="2"/>
+          <circle class="ring r2" cx="420" cy="330" r="64" fill="none" style="stroke:var(--accent);" stroke-width="2"/>
+          <circle class="ring r3" cx="420" cy="330" r="64" fill="none" style="stroke:var(--accent3);" stroke-width="2"/>
+          <circle cx="420" cy="330" r="115" fill="url(#coreglow)"/>
+          <circle class="spin" cx="420" cy="330" r="96" fill="none" style="stroke:var(--moment-accent);" stroke-width="2" stroke-dasharray="3 13" opacity="0.7"/>
+          <!-- outer node pills: NAME + what the agent does with it -->
+          <g text-anchor="middle">
+            <g class="bob"><rect x="326" y="28" width="188" height="74" rx="15" fill="var(--moment-card)" style="stroke:var(--accent);" stroke-width="2"/><text x="420" y="62" font-family="var(--mono)" font-weight="700" font-size="20" fill="var(--moment-ink)">SPECS</text><text x="420" y="86" font-family="var(--mono)" font-size="15" fill="var(--moment-dim)">writes intent</text></g>
+            <g><rect x="596" y="207" width="188" height="74" rx="15" fill="var(--moment-card)" style="stroke:var(--accent3);" stroke-width="2"/><text x="690" y="241" font-family="var(--mono)" font-weight="700" font-size="20" fill="var(--moment-ink)">INTELLIGENCE</text><text x="690" y="265" font-family="var(--mono)" font-size="15" fill="var(--moment-dim)">asks before acting</text></g>
+            <g class="bob"><rect x="506" y="521" width="188" height="74" rx="15" fill="var(--moment-card)" style="stroke:var(--accent2);" stroke-width="2"/><text x="600" y="555" font-family="var(--mono)" font-weight="700" font-size="20" fill="var(--moment-ink)">SAFEGUARDS</text><text x="600" y="579" font-family="var(--mono)" font-size="15" fill="var(--moment-dim)">checks every move</text></g>
+            <g><rect x="146" y="521" width="188" height="74" rx="15" fill="var(--moment-card)" style="stroke:var(--moment-accent);" stroke-width="2"/><text x="240" y="555" font-family="var(--mono)" font-weight="700" font-size="20" fill="var(--moment-ink)">SUBAGENTS</text><text x="240" y="579" font-family="var(--mono)" font-size="15" fill="var(--moment-dim)">spawns in parallel</text></g>
+            <g class="bob"><rect x="56" y="207" width="188" height="74" rx="15" fill="var(--moment-card)" style="stroke:var(--accent);" stroke-width="2"/><text x="150" y="241" font-family="var(--mono)" font-weight="700" font-size="20" fill="var(--moment-ink)">MCP TOOLS</text><text x="150" y="265" font-family="var(--mono)" font-size="15" fill="var(--moment-dim)">calls to act</text></g>
+          </g>
+          <!-- core -->
+          <circle cx="420" cy="330" r="66" fill="var(--accent)"/>
+          <circle class="pulse" cx="420" cy="330" r="66" fill="none" style="stroke:var(--moment-ink);" stroke-width="2" opacity="0.6"/>
+          <text x="420" y="324" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="23" fill="#fff">THE AGENT</text>
+          <text x="420" y="349" text-anchor="middle" font-family="var(--mono)" font-size="13" fill="#fff" opacity="0.85">Claude + harness</text>
+        </svg>
+        <div class="live-panel reveal" style="--i:6;">
+          <div class="lph"><span class="led"></span>Live · running now<span class="spark"><i></i><i></i><i></i><i></i><i></i></span></div>
+          <div class="hero-ticker">
+            <div class="roll">
+              <div class="ln"><span class="ev">›</span> /flow:epic io-rule-migration <span class="ok">✓ EPIC scaffolded</span></div>
+              <div class="ln"><span class="ev">›</span> /flow:scope io-rule-migration <span class="ok">✓ 4 services</span></div>
+              <div class="ln"><span class="ev">›</span> intelligence: who emits card.created? <span class="ok">✓ 41ms</span></div>
+              <div class="ln"><span class="ev">›</span> implement --parallel <span class="ok">✓ secret-scan</span></div>
+              <div class="ln"><span class="ev">›</span> verify <span class="ok">✓ 5 gates green</span></div>
+              <div class="ln"><span class="ev">›</span> review --deep <span class="wn">· 5-agent board</span></div>
+              <div class="ln"><span class="ev">›</span> pr opened <span class="ok">✓ awaiting human</span></div>
+              <div class="ln"><span class="ev">›</span> /flow:epic io-rule-migration <span class="ok">✓ EPIC scaffolded</span></div>
+              <div class="ln"><span class="ev">›</span> /flow:scope io-rule-migration <span class="ok">✓ 4 services</span></div>
+              <div class="ln"><span class="ev">›</span> intelligence: who emits card.created? <span class="ok">✓ 41ms</span></div>
+              <div class="ln"><span class="ev">›</span> implement --parallel <span class="ok">✓ secret-scan</span></div>
+              <div class="ln"><span class="ev">›</span> verify <span class="ok">✓ 5 gates green</span></div>
+              <div class="ln"><span class="ev">›</span> review --deep <span class="wn">· 5-agent board</span></div>
+              <div class="ln"><span class="ev">›</span> pr opened <span class="ok">✓ awaiting human</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-label="The shift">
+    <div class="eyebrow reveal"><span class="dot"></span>The core idea</div>
+    <h1 class="reveal" style="--i:1; max-width:1500px">A smarter model alone won't <span class="c-coral">ship our fleet</span></h1>
+    <h2 class="sub reveal" style="--i:2">An agent is never <i>just</i> the model. It's the model <b>plus the system wrapped around it</b> — and that wrapper is where reliability lives.</h2>
+
+    <!-- EQUATION: Agent = Model + Harness (staged build) -->
+    <div class="eqrow" style="display:flex; align-items:stretch; justify-content:center; gap:24px; margin:42px 0 28px;">
+      <div class="eqbox" style="--d:.10; min-width:264px; text-align:center; padding:26px 30px; border:2px solid var(--border); border-radius:20px; background:var(--card); box-shadow:var(--shadow-sm); display:flex; flex-direction:column; justify-content:center; gap:12px;">
+        <div class="mono" style="font-size:15px; letter-spacing:.16em; color:var(--ink-mute);">WHAT SHIPS WORK</div>
+        <div style="font-family:var(--display); font-weight:800; font-size:56px; color:var(--ink); line-height:1;">AGENT</div>
+      </div>
+      <div class="eqop" style="--d:.30; display:flex; align-items:center; font-family:var(--display); font-weight:300; font-size:58px; color:var(--ink-mute);">=</div>
+      <div class="eqbox" style="--d:.42; min-width:320px; text-align:center; padding:26px 30px; border:2px solid var(--accent-line); border-radius:20px; background:var(--accent-soft); display:flex; flex-direction:column; justify-content:center; gap:10px;">
+        <div class="mono" style="font-size:15px; letter-spacing:.16em; color:var(--accent);">THE INTELLIGENCE</div>
+        <div style="font-family:var(--display); font-weight:800; font-size:56px; color:var(--accent); line-height:1;">MODEL</div>
+        <div style="font-size:19px; color:var(--ink-dim);">Claude — writes the code</div>
+      </div>
+      <div class="eqop" style="--d:.62; display:flex; align-items:center; font-family:var(--display); font-weight:300; font-size:58px; color:var(--ink-mute);">+</div>
+      <div class="eqbox eqhero" style="--d:.74; min-width:404px; text-align:center; padding:26px 34px; border:2px solid var(--accent2-line); border-radius:20px; background:var(--accent2-soft); display:flex; flex-direction:column; justify-content:center; gap:10px;">
+        <div class="mono" style="font-size:15px; letter-spacing:.16em; color:var(--accent2);">WHAT MAKES IT USEFUL</div>
+        <div style="font-family:var(--display); font-weight:800; font-size:56px; color:var(--accent2); line-height:1;">HARNESS</div>
+        <div style="font-size:19px; color:var(--ink-dim);">memory · tools · grounding · safeguards</div>
+      </div>
+    </div>
+
+    <!-- punchline -->
+    <div class="reveal eqpunch" style="--i:16; display:flex; align-items:center; justify-content:center; padding:18px 32px; border-radius:16px; background:var(--bg-soft); border:1px solid var(--border); max-width:1200px; margin:0 auto;">
+      <div style="font-size:25px; line-height:1.4; text-align:center; position:relative; z-index:1;">The model is the genius. The harness is what makes it <b>dependable across our fleet</b> — &nbsp;<b class="c-accent" style="font-family:var(--display); font-size:28px;">The platform is the harness.</b></div>
+    </div>
+
+    <div class="spacer"></div>
+    <p class="foot reveal">Left to itself the model writes the easy <b>80%</b>, then silently misses the <b class="c-coral">20%</b> spread across a service, a trigger and a background job — and re-guesses our system every session. The harness closes that gap.</p>
+  </section>
+
+  <section class="slide moment center" data-label="The Workflow">
+    <div class="divider-wrap">
+      <div class="divider-idx reveal">PART 01</div>
+      <div class="kicker-line" style="height:5px; width:120px; background:linear-gradient(90deg,var(--accent),var(--accent2)); border-radius:3px; margin:8px 0 22px;"></div>
+      <div class="divider-title reveal" style="--i:1">The Workflow</div>
+      <div class="divider-sub reveal" style="--i:2">The outer loop <b style="color:var(--moment-ink)">you</b> drive — one disciplined path from a one-line idea to a merged PR.</div>
+      <div class="navmap reveal" style="--i:3">
+        <div class="nm active"><span class="nmn">1</span> Workflow</div><span class="nmsep"></span>
+        <div class="nm"><span class="nmn">2</span> Commands</div><span class="nmsep"></span>
+        <div class="nm"><span class="nmn">3</span> Under the hood</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide moment center" data-label="Close">
+    <span class="brand reveal"><span class="logo-text">Your Logo</span></span>
+    <h1 class="display reveal" style="--i:1; font-size:84px;">From improviser<br>to <span class="grad">governed teammate</span></h1>
+    <h2 class="sub reveal" style="--i:2; max-width:1240px; font-size:36px;">The platform turns Claude from something that <i>guesses</i> at our fleet into a teammate that's grounded in it, governed around it, and gets smarter every time we ship.</h2>
+    <div class="accentbar reveal" style="--i:3; margin-top:46px;"><span></span><span></span><span></span></div>
+    <p class="foot reveal" style="--i:4; margin-top:30px; font-size:22px;">Next: environment setup &amp; EPIC assignments · then we write our first spec together.</p>
+  </section>
+<!-- SLIDES-END --></deck-stage>
+
+<div id="tweaks-root"></div>
+
+<script type="application/json" id="speaker-notes">
+[
+  "Title slide notes — set the room, one sentence on why this deck now.",
+  "Content slide notes.",
+  "Section divider notes.",
+  "Close notes — the ask."
+]
+</script>
+
+<script src="deck-stage.js"></script>
+<script src="deck-anim.js"></script>
+<!-- motion layer: both are complete no-ops unless a slide opts in with
+     data-fragments / data-anim="draw" / data-count-honest. See
+     references/motion.md. Pair with <link href="deck-motion.css"> in <head>. -->
+<script src="deck-fragments.js"></script>
+<script src="deck-motion.js"></script>
+<script>
+/* F = fullscreen · S = presenter notes in a new tab (live-synced) */
+(function(){
+  var notesEl=document.getElementById('speaker-notes');
+  var NOTES=[]; try{NOTES=JSON.parse(notesEl.textContent)||[];}catch(e){}
+  var stage=document.querySelector('deck-stage');
+  var pres=null;
+  function secs(){return [].slice.call(document.querySelectorAll('deck-stage > section'));}
+  function curIdx(){var a=document.querySelector('[data-deck-active]');return Math.max(0,secs().indexOf(a));}
+  function push(i){try{localStorage.setItem('deck_slide',i+':'+Date.now());}catch(e){} if(pres&&!pres.closed){try{pres.postMessage({deckSlide:i},'*');}catch(e){}}}
+  if(stage)stage.addEventListener('slidechange',function(e){push(e.detail&&typeof e.detail.index==='number'?e.detail.index:curIdx());});
+  function toggleFs(){var el=document.documentElement;var rf=el.requestFullscreen||el.webkitRequestFullscreen;if(!document.fullscreenElement&&!document.webkitFullscreenElement){if(rf)rf.call(el);}else{(document.exitFullscreen||document.webkitExitFullscreen||function(){}).call(document);}}
+  function syncRail(){var fs=document.fullscreenElement||document.webkitFullscreenElement;if(stage){if(fs)stage.setAttribute('no-rail','');else stage.removeAttribute('no-rail');}}
+  document.addEventListener('fullscreenchange',syncRail);
+  document.addEventListener('webkitfullscreenchange',syncRail);
+  function openPres(){
+    pres=window.open('','deck_presenter','width=1000,height=820');
+    if(!pres){alert('Allow pop-ups to open the speaker notes window.');return;}
+    var titles=secs().map(function(s){return s.getAttribute('data-label')||'';});
+    var doc='<!doctype html><html><head><meta charset="utf-8"><title>Speaker Notes</title>'+
+      '<style>*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;background:#0b1320;color:#e7eef8}'+
+      '.wrap{max-width:920px;margin:0 auto;padding:34px 42px 70px}'+
+      '.hd{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #233149;padding-bottom:14px;margin-bottom:22px}'+
+      '.hd .n{font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#5cc6f2;font-weight:700}'+
+      '.hd .t{font-size:13px;color:#7e93a8;letter-spacing:.08em}'+
+      '.title{font-size:27px;font-weight:700;margin:0 0 16px;color:#fff}'+
+      '.note{font-size:23px;line-height:1.58;color:#d8e3f1;white-space:pre-wrap}'+
+      '.next{margin-top:28px;padding-top:18px;border-top:1px solid #233149;color:#8aa0b8;font-size:17px;line-height:1.5}'+
+      '.next b{color:#5cc6f2;font-weight:700;letter-spacing:.12em;font-size:12px;text-transform:uppercase;display:block;margin-bottom:6px}'+
+      '.hint{position:fixed;left:0;right:0;bottom:0;background:#080e16;color:#5d6b80;font-size:12px;text-align:center;padding:9px;border-top:1px solid #1a2638}'+
+      '</style></head><body><div class="wrap">'+
+      '<div class="hd"><div class="n" id="num"></div><div class="t">Speaker Notes</div></div>'+
+      '<div class="title" id="ttl"></div><div class="note" id="note"></div>'+
+      '<div class="next"><b>Next</b><span id="nx"></span></div></div>'+
+      '<div class="hint">Live-synced with the deck \u2014 keep this on your laptop, present the deck on the screen</div>'+
+      '<scr'+'ipt>var NOTES='+JSON.stringify(NOTES)+',TITLES='+JSON.stringify(titles)+';'+
+      'function render(i){i=Math.max(0,Math.min(NOTES.length-1,i));'+
+      'document.getElementById("num").textContent="Slide "+(i+1)+" / "+NOTES.length;'+
+      'document.getElementById("ttl").textContent=TITLES[i]||"";'+
+      'document.getElementById("note").textContent=NOTES[i]||"(no notes for this slide)";'+
+      'document.getElementById("nx").textContent=(i+1<NOTES.length)?(TITLES[i+1]+" \u2014 "+(NOTES[i+1]||"").slice(0,150)+"\u2026"):"\u2014 end of deck \u2014";}'+
+      'window.addEventListener("message",function(e){if(e.data&&typeof e.data.deckSlide==="number")render(e.data.deckSlide);});'+
+      'window.addEventListener("storage",function(e){if(e.key==="deck_slide"&&e.newValue)render(parseInt(e.newValue,10));});'+
+      'render('+curIdx()+');'+
+      '<\/scr'+'ipt></body></html>';
+    pres.document.open();pres.document.write(doc);pres.document.close();
+  }
+  document.addEventListener('keydown',function(e){
+    if(e.target&&/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+    var k=(e.key||'').toLowerCase();
+    if(k==='f'){e.preventDefault();toggleFs();}
+    else if(k==='s'){e.preventDefault();openPres();}
+  });
+})();
+</script>
+
+<!-- Tweaks panel (React) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const { useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakToggle } = window;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "Indigo",
+  "cinematic": true
+}/*EDITMODE-END*/;
+
+// Built-in themes live in this file's <style> block. design-kit themes are
+// compiled in (see below) — each adds one :root[data-theme="…"] block, so
+// switching is the same one-attribute mechanism.
+const THEME_KEY = { "Aurora": "aurora", "Indigo": "indigo", "Boot": "boot" };
+
+// ── design-kit themes (opt-in) ────────────────────────────────────────────
+// 1. compile the theme + the font pairing you picked:
+//      dk=$SKILLS/design-kit/scripts/dk.py
+//      python3 $dk list fonts --theme festival      # only compatible pairings
+//      python3 $dk compile festival anton-archivo --surface deck --strict \
+//              --out theme.css
+// 2. copy the woff2 files it names into ./fonts/ , add
+//      <link rel="stylesheet" href="theme.css">  AFTER this file's <style>,
+//    and drop the fonts.googleapis.com <link> tags above (local fonts mean the
+//    deck survives a room with bad wifi).
+// 3. uncomment the entry (and set TWEAK_DEFAULTS.theme) for the one you compiled:
+// Object.assign(THEME_KEY, {
+//   "Festival": "festival",                 // default for internal work
+//   "Terminal Neon": "terminal-neon",       // engineering / demos
+//   "Jewel Velvet": "jewel-velvet",         // exec / vision
+//   "Cobalt Grid": "cobalt-grid",           // architecture / print (light)
+//   "Sunset Editorial": "sunset-editorial", // retros / narratives
+//   "Poster Bone": "poster-bone",           // workshops (light)
+//   "House Purple": "house-purple",             // the original house look
+// });
+
+function TweaksApp() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-theme', THEME_KEY[t.theme] || 'signal');
+  }, [t.theme]);
+
+  React.useEffect(() => {
+    document.documentElement.classList.toggle('motion-off', !t.cinematic);
+  }, [t.cinematic]);
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Theme" />
+      <TweakRadio label="Look" value={t.theme}
+        options={["Aurora", "Indigo", "Boot"]}
+        onChange={(v) => setTweak('theme', v)} />
+      <TweakSection label="Motion" />
+      <TweakToggle label="Cinematic motion" value={t.cinematic}
+        onChange={(v) => setTweak('cinematic', v)} />
+    </TweaksPanel>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
+</script>
+</body>
+</html>

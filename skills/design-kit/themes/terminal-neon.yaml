@@ -1,0 +1,58 @@
+meta:
+  name: terminal-neon
+  label: Terminal Neon
+  default: false
+  contexts: [internal, platform, engineering, demo]
+  modes: [dark]
+  mood: mission-console / mint-on-midnight
+  source: hyperframes-creative/palettes/neon-electric (row 4)
+  best_for: >
+    Platform and engineering decks, demo-heavy talks, sprint reviews — the
+    "engine room" voice. Terminal and command beats look native here.
+
+colors:
+  ground:    {dark: "#0B132B"}
+  raise:     {dark: "#1C2541"}
+  sunk:      {dark: "#060B18"}
+  ink:       {dark: "#EAF4F4"}
+  ink-soft:  {dark: "rgba(234,244,244,.70)"}
+  ink-faint: {dark: "rgba(234,244,244,.44)"}
+  rule:      {dark: "#2A3A5C"}
+  rule-soft: {dark: "#1F2C46"}
+  accent:    {dark: "#6FFFE9"}
+  accent-bg: {dark: "rgba(111,255,233,.12)"}
+
+emphasis:
+  mint:  "#6FFFE9"
+  teal:  "#5BC0BE"
+  sky:   "#70D6FF"
+  amber: "#FFD23F"
+  pink:  "#EE4266"
+
+semantic:
+  ok:    "#6FFFE9"
+  warn:  "#FFD23F"
+  alert: "#EE4266"
+
+fonts:
+  default: space-ibm
+  compatible: [space-ibm, archivo-tight, anton-archivo, system-stack]
+  incompatible:
+    fraunces-archivo: "editorial serif contradicts the instrument-panel voice"
+    newsreader-archivo: "reading serif contradicts the instrument-panel voice"
+    archivo-black-mono: "poster weight overpowers a palette built on a single mint accent"
+
+rationing:
+  max_emphasis_per_slide: 3
+  hero_hue: mint
+  rule: >
+    Mint is the system's voice — it marks what the machine says (paths,
+    commands, confirmations). Amber and pink are for numbers that changed and
+    things that broke; never decorative.
+
+charts:
+  categorical: ["#6FFFE9", "#70D6FF", "#FFD23F", "#EE4266", "#5BC0BE", "#A78BFA"]
+  sequential:  ["#0B132B", "#173254", "#1F5673", "#25867F", "#43C6AE", "#6FFFE9"]
+  diverging:   ["#EE4266", "#F5928E", "#C9CBD1", "#7FD8CF", "#6FFFE9"]
+  good: "#6FFFE9"
+  bad:  "#EE4266"

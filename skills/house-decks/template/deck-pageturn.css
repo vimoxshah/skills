@@ -1,0 +1,100 @@
+/* deck-pageturn.css — OPT-IN 3D page-turn slide transition.
+ *
+ * Inert until a deck opts in with <deck-stage data-pageturn>, so this file is
+ * safe to link in every deck. Pairs with deck-pageturn.js, which supplies the
+ * one thing CSS cannot: holding the OUTGOING slide visible long enough to turn.
+ *
+ * ── The mechanic, and why it is this way round ─────────────────────────────
+ * The OUTGOING sheet turns away on its spine and uncovers the next page. The
+ * arriving page does not move and does not fade — it is already painted, and is
+ * simply revealed.
+ *
+ * The tempting version is the opposite: rotate the INCOMING slide in from
+ * rotateY(32deg). It looks like motion and it is one rule shorter, but it reads
+ * as a card flipping toward the viewer, not paper — because paper does not swing
+ * into place, the sheet on top of it moves out of the way. Getting the mechanic
+ * backwards is the single most common reason a "page flip" does not feel like a
+ * page, and it is invisible in code review because both versions are a rotateY.
+ *
+ * Three things carry the illusion. Drop any one and it collapses:
+ *   1. ONE sheet moves. The incoming page is static and fully painted.
+ *   2. The hinge is an EDGE (transform-origin left/right), never the centre.
+ *   3. The turning sheet is OPAQUE. A transparent one lets the page beneath show
+ *      through mid-turn, which reads as a double exposure. `.slide` in deck.css
+ *      already sets `background: var(--bg)`; a deck whose slides are transparent
+ *      must set one, or this will look broken in a way that is hard to name.
+ *
+ * ── Numbers, and why they are not round ───────────────────────────────────
+ * -76deg, not -90: at 90 the sheet is edge-on and vanishes into a line, which
+ * reads as a wipe. Stopping short keeps a lit face visible the whole way.
+ * Opacity holds until the last third so this is a turn, not a fade wearing a
+ * rotation. 0.9s with cubic-bezier(.645,.045,.355,1) — slower than the motion
+ * layer's --mo-slow because a page has mass; a fast page turn reads as a glitch.
+ */
+
+@media (prefers-reduced-motion: no-preference){
+  html:not(.motion-off):not(.dk-no3d) deck-stage[data-pageturn] > section{
+    backface-visibility: hidden;
+  }
+
+  /* FORWARD — the sheet being left turns away to the left.
+     .is-turning-out is added by deck-pageturn.js and removed when the turn ends.
+     These declarations deliberately override deck-stage's shadow-DOM
+     ::slotted(*) { opacity:0; visibility:hidden } — outer-document rules outrank
+     ::slotted(), which is what makes this possible without editing the system
+     file. If a future deck-stage adds !important there, this stops working and
+     the fix is a `@layer`, not a `!important` arms race. */
+  html:not(.motion-off):not(.dk-no3d) deck-stage[data-pageturn] > section.is-turning-out{
+    opacity: 1; visibility: visible; pointer-events: none; z-index: 3;
+    transform-origin: 0% 50%;
+    animation: dkTurnAway .9s cubic-bezier(.645,.045,.355,1) both;
+  }
+
+  /* BACK — the sheet being returned to settles down on top. Here the moving page
+     IS the active one, so no held class is needed and CSS can do it alone. */
+  html[data-dk-dir="back"]:not(.motion-off):not(.dk-no3d)
+    deck-stage[data-pageturn] > section[data-deck-active]{
+    z-index: 3; transform-origin: 100% 50%;
+    animation: dkTurnBack .9s cubic-bezier(.645,.045,.355,1) both;
+  }
+
+  /* The shade that deepens toward the hinge as the sheet lifts. This is what
+     makes a flat rotation read as a solid object rather than a texture-mapped
+     plane — without it the turn looks correct and still feels cheap. A
+     pseudo-element, so no slide markup changes. */
+  html:not(.motion-off):not(.dk-no3d)
+    deck-stage[data-pageturn] > section.is-turning-out::after{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:99;
+    background: linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.14) 26%, rgba(0,0,0,0) 62%);
+    animation: dkTurnShade .9s cubic-bezier(.645,.045,.355,1) both;
+  }
+  html[data-dk-dir="back"]:not(.motion-off):not(.dk-no3d)
+    deck-stage[data-pageturn] > section[data-deck-active]::after{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:99;
+    background: linear-gradient(270deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.14) 26%, rgba(0,0,0,0) 62%);
+    animation: dkTurnShade .9s cubic-bezier(.645,.045,.355,1) both;
+  }
+
+  /* Going BACK you are uncovering a page you have already read, so its entrance
+     animations must not replay. This is the half people forget: get the geometry
+     right and backward navigation STILL feels wrong, because every .reveal and
+     .pop fires again as if the slide were new. Held at their final state.
+     Extend this list if a deck adds its own [data-deck-active]-gated entrance. */
+  html[data-dk-dir="back"]:not(.motion-off) deck-stage[data-pageturn] > section[data-deck-active] .reveal,
+  html[data-dk-dir="back"]:not(.motion-off) deck-stage[data-pageturn] > section[data-deck-active] .pop,
+  html[data-dk-dir="back"]:not(.motion-off) deck-stage[data-pageturn] > section[data-deck-active] [data-frag]{
+    animation: none !important; opacity: 1 !important; transform: none !important;
+  }
+}
+
+@keyframes dkTurnAway{
+  0%   { transform: perspective(3200px) rotateY(0deg);   opacity:1; }
+  66%  { opacity:1; }
+  100% { transform: perspective(3200px) rotateY(-76deg); opacity:0; }
+}
+@keyframes dkTurnBack{
+  0%   { transform: perspective(3200px) rotateY(76deg);  opacity:0; }
+  30%  { opacity:1; }
+  100% { transform: perspective(3200px) rotateY(0deg);   opacity:1; }
+}
+@keyframes dkTurnShade{ 0%{opacity:0;} 50%{opacity:.34;} 100%{opacity:0;} }

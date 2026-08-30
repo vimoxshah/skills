@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scoped Worktree Delivery"
+  short_description: "Safely validate and deliver Git worktree changes"
+  default_prompt: "Use $scoped-worktree-delivery to preflight this worktree, verify Git identity and topology, and deliver only the authorized changes."

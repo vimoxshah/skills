@@ -1,0 +1,19 @@
+{
+  "$comment": "Where each harness reads skills and agents. Paths are relative to $HOME. `agents.format` names the transpile target; null = no native subagent support (agents install as skills instead). `detect` = any of these existing means the harness is installed.",
+  "universal": { "skills": ".agents/skills", "note": "Cross-tool root (agentskills.io). Codex, Amp, Factory and others read it directly; the installer links every other harness here." },
+  "harnesses": {
+    "claude":   { "label": "Claude Code",        "detect": [".claude"],                          "skills": ".claude/skills",          "agents": { "dir": ".claude/agents",          "format": "claude-md" },  "commands": ".claude/commands", "outputStyles": ".claude/output-styles", "configRoot": ".claude" },
+    "codex":    { "label": "OpenAI Codex CLI",   "detect": [".codex"],                           "skills": ".agents/skills",          "agents": { "dir": ".codex/agents",           "format": "codex-toml" } },
+    "cursor":   { "label": "Cursor",             "detect": [".cursor"],                          "skills": ".cursor/skills",          "agents": { "dir": ".cursor/agents",          "format": "cursor-md" } },
+    "opencode": { "label": "OpenCode",           "detect": [".config/opencode", ".opencode"],    "skills": ".config/opencode/skills", "agents": { "dir": ".config/opencode/agent",  "format": "opencode-md" } },
+    "copilot":  { "label": "GitHub Copilot CLI", "detect": [".copilot"],                         "skills": ".copilot/skills",         "agents": null },
+    "gemini":   { "label": "Gemini CLI",         "detect": [".gemini"],                          "skills": ".gemini/skills",          "agents": null },
+    "goose":    { "label": "Goose",              "detect": [".config/goose"],                    "skills": ".config/goose/skills",    "agents": null },
+    "amp":      { "label": "Amp",                "detect": [".config/amp", ".amp"],              "skills": ".agents/skills",          "agents": null },
+    "factory":  { "label": "Factory Droid",      "detect": [".factory"],                         "skills": ".factory/skills",         "agents": null },
+    "kiro":     { "label": "Kiro",               "detect": [".kiro"],                            "skills": ".kiro/skills",            "agents": null },
+    "windsurf": { "label": "Windsurf",           "detect": [".codeium/windsurf", ".windsurf"],   "skills": ".codeium/windsurf/skills","agents": null },
+    "cline":    { "label": "Cline",              "detect": [".cline"],                           "skills": ".cline/skills",           "agents": null },
+    "roo":      { "label": "Roo Code",           "detect": [".roo"],                             "skills": ".roo/skills",             "agents": null }
+  }
+}

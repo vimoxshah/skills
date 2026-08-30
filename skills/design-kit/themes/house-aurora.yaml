@@ -1,0 +1,97 @@
+# TRANSCRIBED from house-decks/template/deck.html — do NOT hand-edit the
+# deck_tokens block. Regenerate with scripts/import-house-themes.py so it
+# stays faithful to the template (which is the source of truth).
+meta:
+  name: house-aurora
+  label: House Aurora
+  default: false
+  contexts: [internal, platform, product, review]
+  modes: [light]
+  mood: house / proven
+  source_of_truth: house-decks/template/deck.html  (data-theme="aurora")
+  transcribed: true
+  best_for: >
+    The house blue. Same structure as House Purple with a cyan-blue accent and
+    amber secondary — calmer, slightly more corporate.
+
+colors:
+  ground: {light: "#f5f9fc"}
+  raise: {light: "#ffffff"}
+  sunk: {light: "#eaf1f7"}
+  ink: {light: "#0c2c44"}
+  ink-soft: {light: "#496078"}
+  ink-faint: {light: "#8597a8"}
+  rule: {light: "#dce6ef"}
+  rule-soft: {light: "#e9f0f6"}
+  accent: {light: "#0f9ed8"}
+  accent-bg: {light: "rgba(15,158,216,.10)"}
+
+emphasis:
+  accent: "#0f9ed8"
+  coral: "#e6a23a"      # template's --accent2 (drives .c-coral)
+  green: "#12b3a2"      # template's --accent3 (drives .c-green)
+
+semantic:
+  ok: "#12b3a2"
+  warn: "#e6a23a"
+  alert: "#e6a23a"
+
+fonts:
+  default: house-plex
+  compatible: [house-plex, space-ibm, archivo-tight, system-stack]
+  incompatible:
+    anton-archivo: "poster caps are not the house voice — it is a grotesque"
+    archivo-black-mono: "poster weight is not the house voice"
+    fraunces-archivo: "the house display face is a grotesque, not a serif"
+    newsreader-archivo: "the house display face is a grotesque, not a serif"
+
+rationing:
+  max_emphasis_per_slide: 2
+  hero_hue: accent
+  rule: >
+    House behaviour: the accent carries emphasis in headings, --accent2
+    (.c-coral) marks problems, --accent3 (.c-green) marks resolutions.
+    The ground stays quiet — hierarchy comes from LIGHTNESS, not from
+    saturating everything in the accent hue.
+
+charts:
+  categorical: ["#0E91C7", "#B37E2D", "#0F988A", "#B35C00", "#4C6B2F", "#8A3FA0"]
+  sequential:  ["#E2F3FA", "#B7D7E4", "#8CBBCE", "#609FB8", "#3583A2", "#0A678C"]
+  diverging:   ["#C1121F", "#E9A0BE", "#E8EAF2", "#8FD3CB", "#0F988A"]
+  good: "#0F988A"
+  bad: "#C1121F"
+
+# every token below is copied verbatim from the template
+deck_tokens:
+  --bg: "#f5f9fc"
+  --bg-soft: "#eaf1f7"
+  --bg-tint: "#e3edf4"
+  --card: "#ffffff"
+  --ink: "#0c2c44"
+  --ink-dim: "#496078"
+  --ink-mute: "#8597a8"
+  --border: "#dce6ef"
+  --border-soft: "#e9f0f6"
+  --accent: "#0f9ed8"
+  --accent-deep: "#0b7eaf"
+  --accent-soft: "rgba(15,158,216,.10)"
+  --accent-line: "rgba(15,158,216,.30)"
+  --accent2: "#e6a23a"
+  --accent2-soft: "rgba(230,162,58,.12)"
+  --accent2-line: "rgba(230,162,58,.38)"
+  --accent3: "#12b3a2"
+  --accent3-soft: "rgba(18,179,162,.12)"
+  --accent3-line: "rgba(18,179,162,.40)"
+  --shadow: "0 22px 60px rgba(10,40,68,.13)"
+  --shadow-sm: "0 8px 24px rgba(10,40,68,.09)"
+  --moment-bg: "radial-gradient(1200px 680px at 88% -14%,rgba(15,158,216,.38),transparent 56%),radial-gradient(840px 520px at 2% 118%,rgba(230,162,58,.16),transparent 58%),linear-gradient(155deg,#072334 0%,#0d3a58 100%)"
+  --moment-ink: "#ffffff"
+  --moment-dim: "#bcd2e0"
+  --moment-mute: "#6f8a9d"
+  --moment-accent: "#54c6f2"
+  --moment-card: "rgba(255,255,255,.06)"
+  --moment-border: "rgba(255,255,255,.15)"
+  --term-bg: "#07273a"
+  --term-head: "#0c3450"
+  --term-ink: "#e6f1f8"
+  --term-dim: "#7fa1b4"

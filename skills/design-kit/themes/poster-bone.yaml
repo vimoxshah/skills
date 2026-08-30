@@ -1,0 +1,57 @@
+meta:
+  name: poster-bone
+  label: Poster Bone
+  default: false
+  contexts: [internal, workshop, brainstorm, one-pager]
+  modes: [light]
+  mood: manifesto / printed / provocative
+  source: hyperframes-creative/frame-presets/bold-poster (lineage)
+  best_for: >
+    Workshops, brainstorm kickoffs, one-pagers, "strong opinions" decks. Reads
+    like a manifesto pinned to a wall — the sentence IS the slide.
+
+colors:
+  ground:    {light: "#EDE8E0"}
+  raise:     {light: "#FFFFFF"}
+  sunk:      {light: "#E2DBD0"}
+  ink:       {light: "#1A1A1A"}
+  ink-soft:  {light: "#4A4640"}
+  ink-faint: {light: "#68635A"}
+  rule:      {light: "#C6BFB2"}
+  rule-soft: {light: "#D8D2C6"}
+  accent:    {light: "#BF0603"}
+  accent-bg: {light: "rgba(191,6,3,.08)"}
+
+emphasis:
+  red:  "#BF0603"
+  sand: "#F4D58D"
+  sage: "#708D81"
+
+semantic:
+  ok:    "#708D81"
+  warn:  "#B87503"
+  alert: "#BF0603"
+
+fonts:
+  default: archivo-black-mono
+  compatible: [archivo-black-mono, anton-archivo, archivo-tight, system-stack]
+  incompatible:
+    fraunces-archivo: "refined serif undercuts a deliberately blunt poster voice"
+    newsreader-archivo: "reading serif turns a claim into an essay"
+    space-ibm: "console register belongs to machines, not to a human provocation"
+
+rationing:
+  max_emphasis_per_slide: 1
+  hero_hue: red
+  rule: >
+    ONE red mark per slide. The whole theme is black ink on bone paper with a
+    single red intervention — a second red mark halves the force of the first.
+    Use the ink-block inversion (black fill, bone text) for the alternative
+    emphasis instead of a second hue.
+
+charts:
+  categorical: ["#1A1A1A", "#BF0603", "#698579", "#907E53", "#8A4B8F", "#4A4640"]
+  sequential:  ["#F6F2EA", "#DED5C4", "#C2B49B", "#9E8B6E", "#6E5C42", "#1A1A1A"]
+  diverging:   ["#BF0603", "#DE8A73", "#EDE8E0", "#9DB3A5", "#708D81"]
+  good: "#708D81"
+  bad:  "#BF0603"

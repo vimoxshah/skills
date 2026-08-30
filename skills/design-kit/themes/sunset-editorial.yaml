@@ -1,0 +1,56 @@
+meta:
+  name: sunset-editorial
+  label: Sunset Editorial
+  default: false
+  contexts: [internal, retro, case-study, incident, narrative]
+  modes: [dark]
+  mood: storyteller / firelight / warm
+  source: hyperframes-creative/palettes/warm-editorial (row 10)
+  best_for: >
+    Retros, case studies, incident narratives, "what we learned" decks.
+    Prussian blue with firelight accents; cream ink keeps long reading warm.
+
+colors:
+  ground:    {dark: "#003049"}
+  raise:     {dark: "#0A4159"}
+  sunk:      {dark: "#022238"}
+  ink:       {dark: "#EAE2B7"}
+  ink-soft:  {dark: "rgba(234,226,183,.74)"}
+  ink-faint: {dark: "rgba(234,226,183,.48)"}
+  rule:      {dark: "#1B5570"}
+  rule-soft: {dark: "#123F56"}
+  accent:    {dark: "#FCBF49"}
+  accent-bg: {dark: "rgba(252,191,73,.12)"}
+
+emphasis:
+  amber: "#FCBF49"
+  flame: "#F77F00"
+  red:   "#D62828"
+
+semantic:
+  ok:    "#84A98C"
+  warn:  "#F77F00"
+  alert: "#D62828"
+
+fonts:
+  default: newsreader-archivo
+  compatible: [newsreader-archivo, fraunces-archivo, archivo-tight, system-stack]
+  incompatible:
+    anton-archivo: "poster caps announce; this theme narrates"
+    archivo-black-mono: "manifesto weight contradicts a reflective retrospective register"
+    space-ibm: "console voice strips the warmth the palette exists to create"
+
+rationing:
+  max_emphasis_per_slide: 2
+  hero_hue: amber
+  rule: >
+    Red appears at most ONCE per slide — it is the wound (the failure, the root
+    cause). Amber carries the narrative emphasis, flame the transitions. Red on
+    three items means nothing was actually serious.
+
+charts:
+  categorical: ["#FCBF49", "#F77F00", "#DC4646", "#84A98C", "#669BBC", "#EAE2B7"]
+  sequential:  ["#003049", "#0F4C5C", "#3D7068", "#8A9A6B", "#D4A94F", "#FCBF49"]
+  diverging:   ["#D62828", "#EE8B6B", "#EAE2B7", "#7FA8B8", "#003049"]
+  good: "#84A98C"
+  bad:  "#D62828"

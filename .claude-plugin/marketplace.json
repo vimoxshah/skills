@@ -1,0 +1,19 @@
+{
+  "name": "vimoxshah",
+  "owner": { "name": "Vimox Shah", "url": "https://github.com/vimoxshah" },
+  "metadata": {
+    "description": "Vimox Shah's skills and agents for Claude Code.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "skills",
+      "source": "./",
+      "description": "Skills and agents: visual-verify, html-artifact, arxiv, claude-router, codex-orchestrator, design-kit, house-decks, eli5, explain-interface, scoped-worktree-delivery, plus 18 subagents.",
+      "version": "0.1.0",
+      "author": { "name": "Vimox Shah" },
+      "category": "productivity",
+      "keywords": ["skills", "agents", "routing", "research", "design", "verification"]
+    }
+  ]
+}

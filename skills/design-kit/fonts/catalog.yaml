@@ -1,0 +1,148 @@
+# design-kit font catalog
+#
+# Pairings are FIRST-CLASS and reusable across themes. A theme declares which
+# pairings it is compatible with; theme and pairing are two independent picks
+# validated as a pair (`dk.py check <theme> <pairing>`).
+#
+# Every `google` family is fetched as a pre-built woff2 from the Google Fonts
+# css2 API — no fonttools/brotli needed locally. `dk.py fetch` records real
+# byte counts and licenses into LICENSES.md from what it actually downloaded.
+#
+# license values:
+#   OFL-1.1    — freely embeddable, including data-URI inlining into shared pages
+#   COMMERCIAL — licensed face. NEVER inlined into a shared/published surface.
+#                The compiler refuses it as a code path, not a doc sentence.
+#   system     — no bytes, no license, no fetch
+
+version: 1
+
+# ── shared fallback stacks ────────────────────────────────────────────────
+stacks:
+  sans:  "ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif"
+  serif: "ui-serif,Georgia,'Iowan Old Style','Times New Roman',serif"
+  mono:  "ui-monospace,SFMono-Regular,Menlo,'Cascadia Mono',Consolas,monospace"
+
+pairings:
+
+  # ── loud / poster ───────────────────────────────────────────────────────
+  anton-archivo:
+    label: "Anton × Archivo"
+    mood: poster / loud / high-energy
+    voice: >
+      Condensed caps display against a neutral grotesque body. Headlines hit
+      like a marquee; the body stays out of the way. Built for slides read at
+      projector distance.
+    display: {family: Anton, source: google, weights: [400], transform: uppercase, tracking: "-.02em", fallback: sans}
+    body:    {family: Archivo, source: google, weights: [400, 500, 600, 700], fallback: sans}
+    mono:    {family: IBM Plex Mono, source: google, weights: [400, 500, 600, 700], fallback: mono}
+    license: OFL-1.1
+    surfaces: [deck, artifact, frame, pptx]
+
+  archivo-black-mono:
+    label: "Archivo Black × Archivo"
+    mood: manifesto / heavy / hard-edged
+    voice: >
+      Maximum-weight grotesque display. Reads like a printed poster or a
+      pinned-up claim — best where the sentence itself is the argument.
+    display: {family: Archivo Black, source: google, weights: [400], transform: uppercase, tracking: "-.03em", fallback: sans}
+    body:    {family: Archivo, source: google, weights: [400, 500, 600, 700], fallback: sans}
+    mono:    {family: IBM Plex Mono, source: google, weights: [400, 500, 600, 700], fallback: mono}
+    license: OFL-1.1
+    surfaces: [deck, artifact, frame, pptx]
+
+  house-plex:
+    label: "Space Grotesk × IBM Plex Sans"
+    mood: house / proven
+    voice: >
+      The deck template's own stack, exactly. Space Grotesk for display, IBM
+      Plex Sans for body, IBM Plex Mono for labels and terminals. This is what
+      every existing deck in the library is set in — the correct pairing for any
+      house theme, and the one that makes a new deck look like it belongs.
+    display: {family: Space Grotesk, source: google, weights: [400, 500, 600, 700], tracking: "-.015em", fallback: sans}
+    body:    {family: IBM Plex Sans, source: google, weights: [400, 500, 600, 700], fallback: sans}
+    mono:    {family: IBM Plex Mono, source: google, weights: [400, 500, 600, 700], fallback: mono}
+    license: OFL-1.1
+    surfaces: [deck, artifact, frame, pptx]
+
+
+  # ── launch / geometric ──────────────────────────────────────────────────
+  outfit-inter:
+    label: "Outfit × Inter"
+    mood: launch / geometric / bright
+    voice: >
+      Geometric grotesque display over a plain, highly legible body with mono
+      terminals (Outfit lockups, Inter support, JetBrains Mono commands).
+      Reads modern-product-launch: confident display over quiet supporting
+      text.
+    display: {family: Outfit, source: google, weights: [500, 600, 700, 800], tracking: "-.02em", fallback: sans}
+    body:    {family: Inter, source: google, weights: [400, 500, 600, 700], fallback: sans}
+    mono:    {family: JetBrains Mono, source: google, weights: [400, 500, 600, 700], fallback: mono}
+    license: OFL-1.1
+    surfaces: [deck, artifact, frame, pptx]
+
+  # ── technical ───────────────────────────────────────────────────────────
+  archivo-tight:
+    label: "Archivo 700 × Archivo"
+    mood: neutral / technical / quiet
+    voice: >
+      One family doing both jobs, separated by weight and tracking rather than
+      contrast. The safe choice when the content is dense and the design should
+      not editorialise it.
+    display: {family: Archivo, source: google, weights: [400, 500, 600, 700], tracking: "-.02em", fallback: sans}
+    body:    {family: Archivo, source: google, weights: [400, 500, 600, 700], fallback: sans}
+    mono:    {family: IBM Plex Mono, source: google, weights: [400, 500, 600, 700], fallback: mono}
+    license: OFL-1.1
+    surfaces: [deck, artifact, frame, pptx]
+
+  space-ibm:
+    label: "Space Grotesk × IBM Plex Mono"
+    mood: console / instrument-panel
+    voice: >
+      Slightly mechanical grotesque with mono labels. Reads as instrument
+      panel — belongs to engineering subject matter rather than decorating it.
+    display: {family: Space Grotesk, source: google, weights: [400, 500, 600, 700], tracking: "-.015em", fallback: sans}
+    body:    {family: Space Grotesk, source: google, weights: [400, 500, 600, 700], fallback: sans}
+    mono:    {family: IBM Plex Mono, source: google, weights: [400, 500, 600, 700], fallback: mono}
+    license: OFL-1.1
+    surfaces: [deck, artifact, frame, pptx]
+
+  # ── editorial ───────────────────────────────────────────────────────────
+  fraunces-archivo:
+    label: "Fraunces × Archivo"
+    mood: editorial / premium
+    voice: >
+      High-contrast display serif with optical sizing against a plain body.
+      Reads considered and expensive — earns its place on vision and exec
+      material, fights loud multi-hue palettes.
+    display: {family: Fraunces, source: google, weights: [300, 400, 600, 700], tracking: "-.015em", fallback: serif}
+    body:    {family: Archivo, source: google, weights: [400, 500, 600, 700], fallback: sans}
+    mono:    {family: IBM Plex Mono, source: google, weights: [400, 500, 600, 700], fallback: mono}
+    license: OFL-1.1
+    surfaces: [deck, artifact, frame, pptx]
+
+  newsreader-archivo:
+    label: "Newsreader × Archivo"
+    mono_note: mono used only for terminal/code beats
+    mood: narrative / warm / reportage
+    voice: >
+      Text-first serif built for reading. The storyteller pairing — retros,
+      case studies, incident narratives where prose carries the weight.
+    display: {family: Newsreader, source: google, weights: [300, 400, 500, 600, 700], tracking: "-.01em", fallback: serif}
+    body:    {family: Archivo, source: google, weights: [400, 500, 600, 700], fallback: sans}
+    mono:    {family: IBM Plex Mono, source: google, weights: [400, 500, 600, 700], fallback: mono}
+    license: OFL-1.1
+    surfaces: [deck, artifact, frame, pptx]
+
+  # ── zero-weight ─────────────────────────────────────────────────────────
+  system-stack:
+    label: "System stacks"
+    mood: neutral / zero-weight
+    voice: >
+      No webfont bytes at all. Always available, never fails to load, and a
+      legitimate deliberate choice — the correct default for a page whose job
+      is to be read rather than to have a voice.
+    display: {stack: sans, weights: [600, 700], tracking: "-.02em"}
+    body:    {stack: sans, weights: [400, 600]}
+    mono:    {stack: mono, weights: [400, 600]}
+    license: system
+    surfaces: [deck, artifact, frame, pptx]

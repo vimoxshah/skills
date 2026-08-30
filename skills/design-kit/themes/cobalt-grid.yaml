@@ -1,0 +1,59 @@
+meta:
+  name: cobalt-grid
+  label: Cobalt Grid
+  default: false
+  contexts: [internal, architecture, spec, workshop, print]
+  modes: [light]
+  mood: drafting-table / precise / hard-edged
+  source: hyperframes-creative/frame-presets/cobalt-grid
+  best_for: >
+    Architecture reviews, spec walkthroughs, PDF-first decks, workshop
+    handouts. The only registry theme that looks BETTER printed than projected.
+
+colors:
+  ground:    {light: "#F4F5F8"}
+  raise:     {light: "#FFFFFF"}
+  sunk:      {light: "#E8EAF2"}
+  ink:       {light: "#10131E"}
+  ink-soft:  {light: "#40465C"}
+  ink-faint: {light: "#5A6178"}
+  rule:      {light: "#C9CCDA"}
+  rule-soft: {light: "#DCDFE9"}
+  accent:    {light: "#1F2BE0"}
+  accent-bg: {light: "rgba(31,43,224,.08)"}
+
+emphasis:
+  cobalt: "#1F2BE0"
+  coral:  "#E4572E"
+  teal:   "#0F8B8D"
+
+semantic:
+  ok:    "#0F8B8D"
+  warn:  "#E4572E"
+  alert: "#C1121F"
+
+fonts:
+  default: archivo-tight
+  compatible: [archivo-tight, space-ibm, archivo-black-mono, system-stack]
+  incompatible:
+    fraunces-archivo: "optical-size serif softens a deliberately hard-edged drafting grid"
+    newsreader-archivo: "reading serif belongs to prose, not to a spec sheet"
+    anton-archivo: "condensed caps fight the precise mono-labelled register"
+
+rationing:
+  max_emphasis_per_slide: 2
+  hero_hue: cobalt
+  rule: >
+    Cobalt marks structure (the thing under discussion). Coral marks what
+    changed or breaks. Teal marks what is verified/safe. Three hues, three
+    meanings — never swapped for variety.
+  print_note: >
+    This theme is print-first: keep accent fills above 8% opacity so they
+    survive greyscale, and never encode meaning in hue alone.
+
+charts:
+  categorical: ["#1F2BE0", "#E4572E", "#0F8B8D", "#7B61FF", "#6A7B00", "#5A6478"]
+  sequential:  ["#EDEFF7", "#C7CDEE", "#9AA4E2", "#6B78D9", "#3E4CCF", "#1F2BE0"]
+  diverging:   ["#C1121F", "#E48C7E", "#E8EAF2", "#8FA9E8", "#1F2BE0"]
+  good: "#0F8B8D"
+  bad:  "#C1121F"

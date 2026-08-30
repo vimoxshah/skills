@@ -1,0 +1,93 @@
+{
+  "name": "@vimoxshah/skills",
+  "repo": "https://github.com/vimoxshah/skills",
+  "centralDir": ".agents/vimoxshah-skills",
+  "bundles": {
+    "core": {
+      "label": "Core \u2014 verify, publish, explain",
+      "skills": [
+        "visual-verify",
+        "html-artifact",
+        "eli5",
+        "explain-interface",
+        "scoped-worktree-delivery"
+      ],
+      "agents": []
+    },
+    "routing": {
+      "label": "Routing \u2014 right model for each task",
+      "skills": [
+        "claude-router",
+        "codex-orchestrator"
+      ],
+      "agents": [
+        "advisor",
+        "explorer",
+        "implementer",
+        "hard-implementer",
+        "reviewer"
+      ],
+      "routing": [
+        "CLAUDE-ROUTING.md",
+        "CLAUDE-CODEX-ROUTING.md"
+      ]
+    },
+    "research": {
+      "label": "Research \u2014 arXiv to a decision",
+      "skills": [
+        "arxiv"
+      ],
+      "agents": [
+        "paper-analyst"
+      ]
+    },
+    "design": {
+      "label": "Design \u2014 decks, themes, landing pages",
+      "skills": [
+        "design-kit",
+        "house-decks"
+      ],
+      "agents": [
+        "presentation-director",
+        "brand-guardian",
+        "ux-architect",
+        "persona-walkthrough"
+      ]
+    },
+    "experts": {
+      "label": "Experts \u2014 specialist advisor agents",
+      "skills": [],
+      "agents": [
+        "multi-agent-architect",
+        "statistician",
+        "technical-writer",
+        "content-creator",
+        "developer-advocate",
+        "database-optimizer",
+        "identity-access-engineer",
+        "search-relevance-engineer"
+      ]
+    },
+    "claude-extras": {
+      "label": "Claude Code extras \u2014 /style command, output styles, statusline",
+      "skills": [],
+      "agents": [],
+      "commands": [
+        "style.md"
+      ],
+      "outputStyles": [
+        "attention-kind.md",
+        "plain.md"
+      ],
+      "statusline": "statusline-command.sh",
+      "claudeOnly": true
+    }
+  },
+  "default": [
+    "core",
+    "routing",
+    "research",
+    "design",
+    "experts"
+  ]
+}
