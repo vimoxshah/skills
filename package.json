@@ -1,7 +1,7 @@
 {
   "name": "@vimoxshah/skills",
   "version": "0.1.0",
-  "description": "Skills and agents for Claude Code, Codex, Cursor, OpenCode and more — one install, every harness.",
+  "description": "Skills and agents for Claude Code, Codex, Cursor, OpenCode and more \u2014 one install, every harness.",
   "type": "module",
   "license": "MIT",
   "author": "Vimox Shah",
@@ -22,6 +22,7 @@
     "manifest.json",
     "install.sh",
     "README.md",
+    "THIRD_PARTY.md",
     "LICENSE"
   ],
   "scripts": {

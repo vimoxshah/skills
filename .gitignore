@@ -5,3 +5,4 @@ __pycache__/
 skills/design-kit/fonts/cache/
 .installed.json
 .genea/
+*.tgz
