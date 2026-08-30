@@ -1,0 +1,130 @@
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1280px; height: 640px; }
+  body {
+    background: #0B132B;
+    font-family: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+    color: #EAF4F4;
+    overflow: hidden;
+    position: relative;
+  }
+  .glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(700px 520px at 78% 50%, rgba(111,255,233,.13), transparent 64%),
+      radial-gradient(560px 380px at 2% 100%, rgba(112,214,255,.11), transparent 62%);
+  }
+  .stage {
+    position: relative; height: 100%;
+    padding: 60px 68px;
+    display: grid;
+    grid-template-columns: 1fr 452px;
+    grid-template-rows: auto 1fr auto;
+    column-gap: 54px;
+  }
+
+  /* ---- top row ---- */
+  .repo {
+    grid-column: 1 / -1;
+    font: 600 21px/1 'SF Mono', Menlo, monospace;
+    color: rgba(234,244,244,.5);
+  }
+  .repo b { color: #6FFFE9; font-weight: 600; }
+
+  /* ---- left ---- */
+  .left { grid-column: 1; grid-row: 2; align-self: center; }
+  h1 {
+    font-size: 82px; line-height: .97;
+    letter-spacing: -.034em; font-weight: 800;
+  }
+  h1 em { font-style: normal; color: #6FFFE9; }
+  .sub {
+    margin-top: 24px;
+    font-size: 25px; line-height: 1.4;
+    color: rgba(234,244,244,.72);
+    font-weight: 450;
+  }
+  .stats {
+    margin-top: 30px;
+    display: flex; gap: 12px;
+  }
+  .stat {
+    background: rgba(28,37,65,.85);
+    border: 1px solid #2A3A5C;
+    border-radius: 10px;
+    padding: 11px 17px;
+    font-size: 19px; font-weight: 600;
+    color: rgba(234,244,244,.9);
+  }
+  .stat b { color: #6FFFE9; font-weight: 800; }
+
+  /* ---- right: one clone fans out ---- */
+  .fan { grid-column: 2; grid-row: 2; align-self: center; position: relative; height: 340px; }
+  .fan svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hub {
+    position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 204px;
+    background: #1C2541; border: 1px solid #3B5183;
+    border-radius: 11px; padding: 13px 16px;
+    font: 600 15px/1.45 'SF Mono', Menlo, monospace;
+    color: #EAF4F4; white-space: nowrap;
+    box-shadow: 0 0 0 5px rgba(111,255,233,.07);
+  }
+  .hub span { display: block; font-size: 11.5px; letter-spacing: .15em; color: rgba(234,244,244,.42); margin-bottom: 5px; }
+  .node {
+    position: absolute; left: 300px;
+    background: rgba(28,37,65,.7);
+    border: 1px solid #2A3A5C;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 17px; font-weight: 600;
+    color: rgba(234,244,244,.86);
+    white-space: nowrap;
+  }
+  .node.more { color: rgba(234,244,244,.5); font-weight: 500; background: transparent; border-style: dashed; }
+
+  /* ---- bottom ---- */
+  .cmd {
+    grid-column: 1 / -1; grid-row: 3;
+    justify-self: start;
+    display: inline-flex; align-items: center; gap: 14px;
+    background: #1C2541; border: 1px solid #2A3A5C;
+    border-radius: 12px; padding: 18px 26px;
+    font: 600 26px/1 'SF Mono', Menlo, monospace;
+  }
+  .cmd .p { color: #6FFFE9; }
+</style>
+
+<div class="glow"></div>
+
+<div class="stage">
+  <div class="repo">vimoxshah<b>/</b>skills</div>
+
+  <div class="left">
+    <h1>One install,<br><em>every</em> harness.</h1>
+    <div class="sub">Skills and agents for your coding assistant —<br>linked from one clone, updated with one pull.</div>
+    <div class="stats">
+      <div class="stat"><b>10</b> skills</div>
+      <div class="stat"><b>18</b> agents</div>
+      <div class="stat"><b>13</b> harnesses</div>
+    </div>
+  </div>
+
+  <div class="fan">
+    <svg viewBox="0 0 452 340" fill="none" preserveAspectRatio="none">
+      <path d="M204 170 C 252 170, 252 30, 300 30"   stroke="#3B5183" stroke-width="1.6"/>
+      <path d="M204 170 C 252 170, 252 100, 300 100" stroke="#3B5183" stroke-width="1.6"/>
+      <path d="M204 170 L 300 170"                   stroke="#6FFFE9" stroke-width="2" opacity=".6"/>
+      <path d="M204 170 C 252 170, 252 240, 300 240" stroke="#3B5183" stroke-width="1.6"/>
+      <path d="M204 170 C 252 170, 252 310, 300 310" stroke="#3B5183" stroke-width="1.6"/>
+    </svg>
+    <div class="hub"><span>ONE CLONE</span>~/.agents/skills</div>
+    <div class="node" style="top: 12px;">Claude Code</div>
+    <div class="node" style="top: 82px;">Codex</div>
+    <div class="node" style="top: 152px;">Cursor</div>
+    <div class="node" style="top: 222px;">OpenCode</div>
+    <div class="node more" style="top: 292px;">+ 9 more</div>
+  </div>
+
+  <div class="cmd"><span class="p">$</span> npx @vimoxshah/skills</div>
+</div>
