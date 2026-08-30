@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Vimox Shah's skills and agents for Claude Code.",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   "plugins": [
     {
       "name": "skills",
       "source": "./",
       "description": "Skills and agents: visual-verify, html-artifact, arxiv, claude-router, codex-orchestrator, design-kit, house-decks, eli5, explain-interface, scoped-worktree-delivery, plus 18 subagents.",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "author": {
         "name": "Vimox Shah"
       },

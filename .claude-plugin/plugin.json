@@ -1,6 +1,6 @@
 {
   "name": "skills",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Skills and agents for Claude Code \u2014 visual verification, shareable HTML artifacts, arXiv research intake, model routing, deck and theme systems, and specialist advisor agents.",
   "author": {
     "name": "Vimox Shah",

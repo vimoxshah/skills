@@ -1,6 +1,6 @@
 {
   "name": "@vimoxshah/skills",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Skills and agents for Claude Code, Codex, Cursor, OpenCode and more \u2014 one install, every harness.",
   "type": "module",
   "license": "MIT",

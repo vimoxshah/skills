@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here. Versions follow [semantic versioning](https://semver.org).
 
+## [0.1.2] — 2026-08-30
+
+### Changed
+- npm keywords expanded from 8 to 16 to name every harness the installer supports, so a search for `gemini-cli`, `windsurf` or `goose` surfaces the package.
+
+### Added
+- `CHANGELOG.md`, shipped inside the npm tarball.
+- A skills.sh install badge in the README, and a repository social preview card under `.github/assets/` (not part of the tarball).
+
 ## [0.1.1] — 2026-08-30
 
 ### Fixed
