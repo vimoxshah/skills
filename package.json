@@ -1,6 +1,6 @@
 {
   "name": "@vimoxshah/skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Skills and agents for Claude Code, Codex, Cursor, OpenCode and more \u2014 one install, every harness.",
   "type": "module",
   "license": "MIT",
@@ -26,6 +26,7 @@
     "LICENSE"
   ],
   "scripts": {
+    "start": "node bin/install.mjs",
     "lint": "node scripts/lint.mjs",
     "install-skills": "node bin/install.mjs"
   },

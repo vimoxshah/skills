@@ -38,6 +38,8 @@ Want just one skill? `npx skills add vimoxshah/skills --skill visual-verify`
 
 Non-interactive (CI, dotfiles): `npx @vimoxshah/skills --yes --all`
 
+> **Running from a clone of this repo?** Use `node bin/install.mjs` (or `npm start`) instead. Inside the checkout, `npx @vimoxshah/skills` resolves to the local copy and fails with `command not found: vimoxshah-skills`, because the bin is only linked after an `npm install`. The `npx` form is for using the package, not for working on it.
+
 ## What's inside
 
 ### Skills
