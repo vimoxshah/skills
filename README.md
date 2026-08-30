@@ -3,6 +3,7 @@
 **Skills and agents for AI coding assistants — Claude Code, Codex, Cursor, OpenCode, Copilot, Gemini CLI and more. One install, every harness.**
 
 [![npm](https://img.shields.io/npm/v/@vimoxshah/skills?color=cb3837&logo=npm)](https://www.npmjs.com/package/@vimoxshah/skills)
+[![skills.sh](https://www.skills.sh/b/vimoxshah/skills)](https://www.skills.sh/vimoxshah/skills)
 [![MIT](https://img.shields.io/badge/license-MIT-black.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-✓-d97757)](#works-with)
 [![Codex](https://img.shields.io/badge/Codex-✓-10b981)](#works-with)

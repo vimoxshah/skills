@@ -22,6 +22,7 @@
     "manifest.json",
     "install.sh",
     "README.md",
+    "CHANGELOG.md",
     "THIRD_PARTY.md",
     "LICENSE"
   ],
@@ -35,13 +36,21 @@
   },
   "keywords": [
     "claude-code",
+    "claude",
+    "anthropic",
     "codex",
     "cursor",
     "opencode",
+    "github-copilot",
+    "gemini-cli",
+    "goose",
+    "windsurf",
     "agent-skills",
     "skills",
     "subagents",
-    "ai-agents"
+    "ai-agents",
+    "claude-code-plugin",
+    "developer-tools"
   ],
   "repository": {
     "type": "git",
