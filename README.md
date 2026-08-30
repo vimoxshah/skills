@@ -2,6 +2,7 @@
 
 **Skills and agents for AI coding assistants — Claude Code, Codex, Cursor, OpenCode, Copilot, Gemini CLI and more. One install, every harness.**
 
+[![npm](https://img.shields.io/npm/v/@vimoxshah/skills?color=cb3837&logo=npm)](https://www.npmjs.com/package/@vimoxshah/skills)
 [![MIT](https://img.shields.io/badge/license-MIT-black.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-✓-d97757)](#works-with)
 [![Codex](https://img.shields.io/badge/Codex-✓-10b981)](#works-with)
@@ -20,7 +21,7 @@ Pick one. All three land in the same place and can be re-run safely.
 npx skills add vimoxshah/skills
 
 # 2 · This repo's installer — detects your harnesses, asks what to link, symlinks from one central clone
-npx github:vimoxshah/skills
+npx @vimoxshah/skills
 
 # 3 · No Node? Same thing in bash
 curl -fsSL https://raw.githubusercontent.com/vimoxshah/skills/main/install.sh | bash
@@ -35,7 +36,7 @@ Claude Code users can also install it as a plugin:
 
 Want just one skill? `npx skills add vimoxshah/skills --skill visual-verify`
 
-Non-interactive (CI, dotfiles): `npx github:vimoxshah/skills --yes --all`
+Non-interactive (CI, dotfiles): `npx @vimoxshah/skills --yes --all`
 
 ## What's inside
 
@@ -108,10 +109,10 @@ Paths come from [`harnesses.json`](harnesses.json). If your harness is missing, 
 - **Windows** defaults to copy (symlinks need Developer Mode).
 
 ```bash
-npx github:vimoxshah/skills update      # pull the latest
-npx github:vimoxshah/skills doctor      # broken links, drift, unwired harnesses
-npx github:vimoxshah/skills uninstall   # remove everything the installer created
-npx github:vimoxshah/skills list        # what's in each bundle
+npx @vimoxshah/skills update      # pull the latest
+npx @vimoxshah/skills doctor      # broken links, drift, unwired harnesses
+npx @vimoxshah/skills uninstall   # remove everything the installer created
+npx @vimoxshah/skills list        # what's in each bundle
 ```
 
 Bundles: `core` · `routing` · `research` · `design` · `experts` · `claude-extras`. Defined in [`manifest.json`](manifest.json).
